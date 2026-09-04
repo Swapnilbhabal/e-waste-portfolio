@@ -1,0 +1,101 @@
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700&family=Poppins:wght@300;400;500;600;700&display=swap');
+
+html {
+    scroll-behavior: smooth;
+}
+
+/* Custom Cursor */
+.cursor {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 32px;
+    height: 32px;
+    background: rgba(34, 197, 94, 0.2);
+    border: 2px solid #22c55e;
+    border-radius: 50%;
+    pointer-events: none;
+    transform: translate(-50%, -50%);
+    transition: transform 0.1s ease;
+    z-index: 9999;
+}
+
+@keyframes spinSlow {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+}
+
+.animate-spin-slow {
+    animation: spinSlow 12s linear infinite;
+}
+
+/* Assignment Card Hover Glow & Scale Up */
+.assignment-card-hover {
+    transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.assignment-card-hover:hover {
+    transform: translateY(-6px) scale(1.03);
+    border-color: #22c55e;
+    box-shadow: 0 0 35px rgba(34, 197, 94, 0.45);
+}
+
+/* Certificate Infinite Scroll Keyframes */
+@keyframes scroll {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+}
+
+@keyframes scrollReverse {
+    0% { transform: translateX(-50%); }
+    100% { transform: translateX(0); }
+}
+
+.animate-scroll {
+    display: flex;
+    width: max-content;
+    animation: scroll 25s linear infinite;
+}
+
+.animate-scroll-reverse {
+    display: flex;
+    width: max-content;
+    animation: scrollReverse 25s linear infinite;
+}
+
+.cert__content:hover {
+    animation-play-state: paused;
+}
+
+/* Fade gradients on edges of certificate slider */
+.cert__container::after, .cert__container::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    width: 15%;
+    height: 100%;
+    z-index: 10;
+    pointer-events: none;
+}
+.cert__container::after {
+    left: 0;
+    background: linear-gradient(90deg, #06110d 0%, transparent 100%);
+}
+.cert__container::before {
+    right: 0;
+    background: linear-gradient(-90deg, #06110d 0%, transparent 100%);
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+    width: 8px;
+}
+::-webkit-scrollbar-track {
+    background: #06110d;
+}
+::-webkit-scrollbar-thumb {
+    background: #122b22;
+    border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+    background: #16c172;
+}
