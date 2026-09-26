@@ -1,0 +1,211 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>E-Waste 2050 | Forecast Intelligence</title>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap');
+:root{
+  --bg:#07110f;--panel:#0d1b18;--panel2:#10231f;--line:#203a34;
+  --text:#f2f7f4;--muted:#8ea69e;--lime:#b8f36a;--cyan:#54e0c1;
+  --orange:#ffb15c;--red:#ff6d68;--shadow:0 24px 80px rgba(0,0,0,.30)
+}
+*{box-sizing:border-box}html{scroll-behavior:smooth}
+body{margin:0;background:
+radial-gradient(circle at 15% 0%,rgba(84,224,193,.09),transparent 32rem),
+radial-gradient(circle at 90% 8%,rgba(184,243,106,.07),transparent 30rem),
+var(--bg);color:var(--text);font-family:'DM Sans',sans-serif}
+body:before{content:"";position:fixed;inset:0;pointer-events:none;opacity:.025;
+background-image:linear-gradient(rgba(255,255,255,.7) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.7) 1px,transparent 1px);background-size:48px 48px}
+.wrap{max-width:1380px;margin:auto;padding:0 28px}
+nav{height:72px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid var(--line)}
+.brand{font-family:'Space Grotesk';font-weight:700;letter-spacing:-.04em;font-size:19px}
+.brand span{color:var(--lime)}
+.navlinks{display:flex;gap:24px}.navlinks a{color:var(--muted);text-decoration:none;font-size:13px}.navlinks a:hover{color:var(--text)}
+.hero{padding:78px 0 54px;display:grid;grid-template-columns:1.2fr .8fr;gap:40px;align-items:end}
+.kicker{font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:var(--lime);font-weight:700}
+h1{font-family:'Space Grotesk';font-size:clamp(46px,7vw,88px);line-height:.94;letter-spacing:-.065em;margin:18px 0 22px;max-width:900px}
+.hero p{max-width:720px;color:var(--muted);font-size:17px;line-height:1.7;margin:0}
+.hero-side{border-left:1px solid var(--line);padding-left:28px}
+.hero-side .big{font-family:'Space Grotesk';font-size:54px;font-weight:700;letter-spacing:-.05em;color:var(--lime)}
+.hero-side small{color:var(--muted)}
+.kpis{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-bottom:14px}
+.kpi,.panel{background:linear-gradient(145deg,rgba(16,35,31,.96),rgba(9,24,20,.96));border:1px solid var(--line);border-radius:18px;box-shadow:var(--shadow)}
+.kpi{padding:22px;min-height:132px;position:relative;overflow:hidden}.kpi:after{content:"";position:absolute;width:100px;height:100px;border-radius:50%;right:-35px;top:-45px;background:rgba(184,243,106,.05)}
+.label{font-size:11px;text-transform:uppercase;letter-spacing:.11em;color:var(--muted)}
+.value{font-family:'Space Grotesk';font-size:31px;font-weight:700;margin:10px 0 4px;letter-spacing:-.04em}
+.sub{font-size:12px;color:var(--muted)}
+section{padding:48px 0}.section-title{display:flex;justify-content:space-between;gap:20px;align-items:end;margin-bottom:18px}
+h2{font-family:'Space Grotesk';font-size:30px;letter-spacing:-.04em;margin:0}.section-title p{color:var(--muted);font-size:13px;margin:0;max-width:500px;text-align:right}
+.panel{padding:22px}.toolbar{display:flex;gap:10px;align-items:center;justify-content:space-between;flex-wrap:wrap;margin-bottom:16px}
+.controls{display:flex;gap:8px;flex-wrap:wrap}.btn,.select,.range{background:#091613;border:1px solid var(--line);color:var(--text);border-radius:10px;padding:9px 12px;font:inherit;font-size:12px}
+.btn{cursor:pointer}.btn.active{background:var(--lime);color:#07110f;border-color:var(--lime);font-weight:700}
+.chart-lg{height:440px}.chart-md{height:320px}.chart-sm{height:260px}
+.grid2{display:grid;grid-template-columns:1.35fr .65fr;gap:14px}.grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+.insight{padding:20px;border:1px solid var(--line);border-radius:14px;background:rgba(255,255,255,.018)}
+.insight .num{font-family:'Space Grotesk';font-size:38px;font-weight:700;color:var(--cyan);margin:6px 0}
+.insight h3{margin:0 0 8px;font-size:15px}.insight p{margin:0;color:var(--muted);font-size:13px;line-height:1.65}
+.sliderrow{display:flex;align-items:center;gap:12px}.sliderrow input{accent-color:var(--lime);width:190px}
+.yearbadge{font-family:'Space Grotesk';font-weight:700;color:var(--lime)}
+.country-buttons{display:grid;grid-template-columns:repeat(2,1fr);gap:6px;max-height:320px;overflow:auto}
+.country{border:1px solid var(--line);background:#091613;color:var(--muted);padding:10px;border-radius:9px;text-align:left;cursor:pointer;font-size:12px}
+.country.active{border-color:var(--cyan);color:var(--text);background:rgba(84,224,193,.08)}
+.tablewrap{overflow:auto}.table{width:100%;border-collapse:collapse;font-size:13px}.table th{color:var(--muted);text-align:left;font-size:11px;text-transform:uppercase;letter-spacing:.08em;padding:12px;border-bottom:1px solid var(--line)}.table td{padding:13px 12px;border-bottom:1px solid rgba(32,58,52,.7)}.table td:not(:first-child){font-family:'Space Grotesk'}.pill{display:inline-block;padding:4px 8px;border-radius:99px;background:rgba(184,243,106,.1);color:var(--lime);font-size:10px}
+footer{padding:42px 0 70px;color:var(--muted);font-size:12px;line-height:1.7;border-top:1px solid var(--line)}
+footer b{color:var(--text)}
+@media(max-width:900px){.hero{grid-template-columns:1fr}.hero-side{border-left:0;border-top:1px solid var(--line);padding:22px 0 0}.kpis{grid-template-columns:repeat(2,1fr)}.grid2,.grid3{grid-template-columns:1fr}.navlinks{display:none}.section-title{align-items:start;flex-direction:column}.section-title p{text-align:left}}
+@media(max-width:560px){.wrap{padding:0 16px}.kpis{grid-template-columns:1fr}.hero{padding-top:52px}h1{font-size:48px}.chart-lg{height:340px}}
+</style>
+</head>
+<body>
+<div class="wrap">
+<nav><div class="brand">E-WASTE<span> / </span>FORECAST</div><div class="navlinks"><a href="#forecast">Forecast</a><a href="#countries">Countries</a><a href="#models">Models</a><a href="#data">Data</a></div></nav>
+
+<header class="hero">
+<div>
+<div class="kicker">Forecast intelligence · 2015—2035</div>
+<h1>Can we predict the future of e-waste?</h1>
+<p>Explore historical e-waste generation, technology-consumption signals and a recursive Random Forest forecast across 10 countries. Move the controls, inspect the years, and see where the model takes the data.</p>
+</div>
+<div class="hero-side">
+<div class="label">2035 model forecast</div>
+<div class="big" id="hero2035">—</div>
+<small>metric tons across the modeled countries</small>
+</div>
+</header>
+
+<div class="kpis" id="kpis"></div>
+
+<section id="forecast">
+<div class="section-title"><div><div class="kicker">01 · The future curve</div><h2>History → forecast</h2></div><p>Observed values are solid. Forecast values are dashed. Hover any point for the exact number.</p></div>
+<div class="panel">
+<div class="toolbar">
+<div class="controls"><button class="btn active" data-horizon="10">10 years</button><button class="btn" data-horizon="5">5 years</button></div>
+<div class="sliderrow"><span class="label">Inspect year</span><input id="yearSlider" type="range" min="2026" max="2035" value="2035"><span class="yearbadge" id="yearBadge">2035</span></div>
+</div>
+<div class="chart-lg"><canvas id="globalChart"></canvas></div>
+</div>
+</section>
+
+<section>
+<div class="section-title"><div><div class="kicker">02 · What the model sees</div><h2>Signals & patterns</h2></div><p>These are descriptive relationships from the supplied dataset, not proof that one variable causes another.</p></div>
+<div class="grid3">
+<div class="insight"><div class="label">Dataset</div><div class="num" id="rows">110</div><h3>country-year observations</h3><p>10 countries spanning 2015–2025.</p></div>
+<div class="insight"><div class="label">Forecast method</div><div class="num" id="modelName">RF</div><h3>recursive country-level ML</h3><p>Lagged e-waste, rolling averages and technology-consumption indicators feed the forecast.</p></div>
+<div class="insight"><div class="label">Holdout RMSE</div><div class="num" id="rmse">—</div><h3>time-based test</h3><p>Evaluation uses unseen 2023–2025 years, without random shuffling.</p></div>
+</div>
+</section>
+
+<section id="countries">
+<div class="section-title"><div><div class="kicker">03 · Country lens</div><h2>Explore the world one country at a time</h2></div><p>Select a country to switch the historical and forecast curves.</p></div>
+<div class="grid2">
+<div class="panel"><div class="toolbar"><div><div class="label">Selected country</div><strong id="countryTitle">India</strong></div><span class="pill" id="countryDelta">—</span></div><div class="chart-md"><canvas id="countryChart"></canvas></div></div>
+<div class="panel"><div class="label" style="margin-bottom:10px">Countries</div><div class="country-buttons" id="countryButtons"></div></div>
+</div>
+</section>
+
+<section id="models">
+<div class="section-title"><div><div class="kicker">04 · Model transparency</div><h2>Don't hide the uncertainty</h2></div><p>The selected model has the lowest holdout RMSE among the three candidates supplied in the dashboard.</p></div>
+<div class="grid2">
+<div class="panel"><div class="chart-sm"><canvas id="modelChart"></canvas></div></div>
+<div class="panel">
+<div class="insight"><div class="label">Holdout R²</div><div class="num" id="r2">—</div><h3>Why this matters</h3><p>A slightly negative R² means the forecast should be treated as a rough trend estimate rather than a highly precise prediction.</p></div>
+</div>
+</div>
+</section>
+
+<section id="data">
+<div class="section-title"><div><div class="kicker">05 · 2035 snapshot</div><h2>Country outlook</h2></div><p>Projected 2035 e-waste from the supplied model output.</p></div>
+<div class="panel tablewrap"><table class="table"><thead><tr><th>Country</th><th>2025 actual</th><th>2035 forecast</th><th>Change</th></tr></thead><tbody id="tableBody"></tbody></table></div>
+</section>
+
+<footer>
+<p><b>Methodology:</b> The supplied dashboard describes a Random Forest selected by lowest RMSE on a time-based 2023–2025 holdout. Features include country, year, two years of lagged e-waste, a three-year rolling average, smartphone sales, laptop shipments, gaming-console adoption, smartwatch penetration, consumer gadget spending and 5G penetration. Future technology indicators are projected from historical trends, and e-waste is generated recursively one year at a time. fileciteturn1file3L217-L235</p>
+<p><b>Important:</b> The supplied model's holdout R² is negative, so its long-range numbers should be presented as model forecasts, not as certain future values. The original dashboard explicitly flags this limitation. fileciteturn1file4L287-L289</p>
+</footer>
+</div>
+
+<script>
+const DATA = {"meta":{"historical_period":"2015-2025","forecast_period":"2026-2035","target":"E-Waste Generated (Metric Tons)","selected_model":"Random Forest","selection_metric":"RMSE on time-based 2023-2025 holdout","holdout_mae":459.86,"holdout_rmse":554.64,"holdout_r2":-0.0847,"forecast_2030_metric_tons":10099.42,"forecast_2035_metric_tons":10633.97,"forecast_method":"Recursive country-level ML forecast with lagged e-waste and forecasted technology variables","future_features_hardcoded":false},"global_historical":{"years":[2015,2016,2017,2018,2019,2020,2021,2022,2023,2024,2025],"values":[8817.21,10285.5,11065.61,13025.96,11873.94,9621.77,10763.37,7647.33,9428.0,11228.14,10131.96]},"global_forecast":{"years":[2026,2027,2028,2029,2030,2031,2032,2033,2034,2035],"values":[9500.93,9735.22,10098.79,10074.05,10099.42,10186.59,10370.18,10503.05,10557.93,10633.97]},"model_comparison":[{"Model":"Random Forest","MAE":459.86,"RMSE":554.64,"R2":-0.08},{"Model":"Gradient Boosting","MAE":473.67,"RMSE":561.01,"R2":-0.11},{"Model":"Ridge","MAE":563.08,"RMSE":704.99,"R2":-0.75}],"countries":["Brazil","Canada","China","France","Germany","India","Japan","South Korea","UK","USA"],"country_historical":{"Brazil":{"years":[2015,2016,2017,2018,2019,2020,2021,2022,2023,2024,2025],"values":[1681.23,1635.14,1957.62,1348.88,158.64,1913.13,1250.45,1022.45,479.54,1229.28,1859.55]},"Canada":{"years":[2015,2016,2017,2018,2019,2020,2021,2022,2023,2024,2025],"values":[1892.67,1517.83,1489.69,1731.98,499.86,663.87,1954.06,251.69,1368.87,1783.59,165.18]},"China":{"years":[2015,2016,2017,2018,2019,2020,2021,2022,2023,2024,2025],"values":[1187.13,563.9,1037.5,1325.48,1825.14,1886.61,888.49,1455.58,414.1,1162.67,281.04]},"France":{"years":[2015,2016,2017,2018,2019,2020,2021,2022,2023,2024,2025],"values":[269.0,1589.3,1450.58,151.03,1833.82,620.9,415.64,1113.36,734.12,1270.77,958.76]},"Germany":{"years":[2015,2016,2017,2018,2019,2020,2021,2022,2023,2024,2025],"values":[170.48,869.76,621.83,1902.52,842.08,1348.62,673.92,821.56,589.3,1317.18,744.28]},"India":{"years":[2015,2016,2017,2018,2019,2020,2021,2022,2023,2024,2025],"values":[1024.09,1575.08,389.65,1511.64,938.92,336.19,998.97,1414.84,1962.59,496.94,1458.72]},"Japan":{"years":[2015,2016,2017,2018,2019,2020,2021,2022,2023,2024,2025],"values":[788.59,234.75,898.48,1365.17,1707.08,1517.56,1454.07,1118.76,1111.27,819.13,393.45]},"South Korea":{"years":[2015,2016,2017,2018,2019,2020,2021,2022,2023,2024,2025],"values":[147.73,111.47,1116.37,1576.45,1743.79,454.98,1753.39,142.36,1007.5,750.67,1835.76]},"UK":{"years":[2015,2016,2017,2018,2019,2020,2021,2022,2023,2024,2025],"values":[716.4,826.85,1231.37,871.4,385.22,742.94,1190.87,131.73,278.39,495.75,1511.48]},"USA":{"years":[2015,2016,2017,2018,2019,2020,2021,2022,2023,2024,2025],"values":[939.89,1361.42,872.52,1241.41,1939.39,136.97,183.51,175.0,1482.32,1902.16,923.74]}},"country_forecast":{"Brazil":{"years":[2026,2027,2028,2029,2030,2031,2032,2033,2034,2035],"values":[741.77,952.6,964.19,1049.58,953.83,968.0,943.32,983.47,979.46,983.91]},"Canada":{"years":[2026,2027,2028,2029,2030,2031,2032,2033,2034,2035],"values":[1021.1,1015.66,1117.92,1087.37,1177.55,1215.07,1215.31,1177.39,1163.98,1151.99]},"China":{"years":[2026,2027,2028,2029,2030,2031,2032,2033,2034,2035],"values":[1034.01,1013.76,1011.84,876.84,974.31,984.65,979.07,943.59,985.69,1006.28]},"France":{"years":[2026,2027,2028,2029,2030,2031,2032,2033,2034,2035],"values":[1000.29,1001.01,1077.24,1067.08,1041.27,1051.42,1054.42,1082.2,1091.78,1086.38]},"Germany":{"years":[2026,2027,2028,2029,2030,2031,2032,2033,2034,2035],"values":[1131.69,986.4,1024.93,978.21,1017.09,1002.38,1030.49,1018.29,1015.0,1008.67]},"India":{"years":[2026,2027,2028,2029,2030,2031,2032,2033,2034,2035],"values":[970.69,1068.48,1059.14,1050.63,1070.91,1121.68,1128.41,1168.49,1236.64,1255.56]},"Japan":{"years":[2026,2027,2028,2029,2030,2031,2032,2033,2034,2035],"values":[896.89,955.1,954.75,993.43,994.14,993.66,968.99,989.66,989.55,1004.2]},"South Korea":{"years":[2026,2027,2028,2029,2030,2031,2032,2033,2034,2035],"values":[806.14,933.82,930.61,1045.12,983.63,974.97,961.68,1015.3,965.05,966.22]},"UK":{"years":[2026,2027,2028,2029,2030,2031,2032,2033,2034,2035],"values":[1084.26,962.96,953.32,920.59,955.51,1008.1,1133.86,1152.03,1156.76,1166.07]},"USA":{"years":[2026,2027,2028,2029,2030,2031,2032,2033,2034,2035],"values":[814.09,845.44,1004.84,1005.21,931.18,866.67,954.63,972.63,974.02,1004.69]}},"leaderboard":[{"country":"India","actual_2025":1458.7,"forecast_2035":1255.6,"pct_change":-13.9},{"country":"UK","actual_2025":1511.5,"forecast_2035":1166.1,"pct_change":-22.9},{"country":"Canada","actual_2025":165.2,"forecast_2035":1152.0,"pct_change":597.4},{"country":"France","actual_2025":958.8,"forecast_2035":1086.4,"pct_change":13.3},{"country":"Germany","actual_2025":744.3,"forecast_2035":1008.7,"pct_change":35.5},{"country":"China","actual_2025":281.0,"forecast_2035":1006.3,"pct_change":258.1},{"country":"USA","actual_2025":923.7,"forecast_2035":1004.7,"pct_change":8.8},{"country":"Japan","actual_2025":393.4,"forecast_2035":1004.2,"pct_change":155.2},{"country":"Brazil","actual_2025":1859.5,"forecast_2035":983.9,"pct_change":-47.1},{"country":"South Korea","actual_2025":1835.8,"forecast_2035":966.2,"pct_change":-47.4}],"eda":{"n_rows":110,"n_countries":10,"years_range":[2015,2025],"descriptive_stats":[{"col":"Year","mean":2020.0,"std":3.18,"min":2015.0,"max":2025.0},{"col":"Smartphone Sales (Millions)","mean":269.1,"std":128.31,"min":64.0,"max":499.89},{"col":"Laptop Shipments (Millions)","mean":86.08,"std":36.43,"min":20.79,"max":149.21},{"col":"Gaming Console Adoption (%)","mean":21.75,"std":9.75,"min":5.49,"max":39.47},{"col":"Smartwatch Penetration (%)","mean":14.13,"std":6.35,"min":2.04,"max":24.81},{"col":"Average Consumer Spending on Gadgets ($)","mean":1571.54,"std":816.55,"min":220.09,"max":2989.54},{"col":"E-Waste Generated (Metric Tons)","mean":1035.35,"std":562.59,"min":111.47,"max":1962.59},{"col":"5G Penetration Rate (%)","mean":42.82,"std":21.89,"min":2.99,"max":79.34}],"outliers":[{"col":"Year","count":0},{"col":"Smartphone Sales (Millions)","count":0},{"col":"Laptop Shipments (Millions)","count":0},{"col":"Gaming Console Adoption (%)","count":0},{"col":"Smartwatch Penetration (%)","count":0},{"col":"Average Consumer Spending on Gadgets ($)","count":0},{"col":"E-Waste Generated (Metric Tons)","count":0},{"col":"5G Penetration Rate (%)","count":0}],"correlation":{"cols":["Year","Smartphone Sales (Millions)","Laptop Shipments (Millions)","Gaming Console Adoption (%)","Smartwatch Penetration (%)","Average Consumer Spending on Gadgets ($)","E-Waste Generated (Metric Tons)","5G Penetration Rate (%)"],"values":[[1.0,-0.1,0.03,0.05,0.09,0.15,-0.03,-0.1],[-0.1,1.0,0.0,0.21,-0.09,0.06,-0.06,-0.04],[0.03,0.0,1.0,0.12,-0.14,0.04,-0.01,-0.06],[0.05,0.21,0.12,1.0,-0.14,0.12,-0.04,0.02],[0.09,-0.09,-0.14,-0.14,1.0,-0.11,-0.05,-0.07],[0.15,0.06,0.04,0.12,-0.11,1.0,0.07,0.04],[-0.03,-0.06,-0.01,-0.04,-0.05,0.07,1.0,0.06],[-0.1,-0.04,-0.06,0.02,-0.07,0.04,0.06,1.0]]},"country_avg_ewaste":[{"country":"Brazil","avg":1321.4},{"country":"Canada","avg":1210.8},{"country":"India","avg":1100.7},{"country":"China","avg":1093.4},{"country":"Japan","avg":1037.1},{"country":"USA","avg":1014.4},{"country":"South Korea","avg":967.3},{"country":"France","avg":946.1},{"country":"Germany","avg":900.1},{"country":"UK","avg":762.0}]}};
+const fmt=n=>Math.round(n).toLocaleString('en-US');
+const pct=n=>(n>0?'+':'')+n.toFixed(1)+'%';
+const lime='#b8f36a',cyan='#54e0c1',orange='#ffb15c',muted='#8ea69e',grid='rgba(142,166,158,.12)';
+Chart.defaults.font.family='DM Sans';
+Chart.defaults.color=muted;
+
+document.getElementById('hero2035').textContent=fmt(DATA.meta.forecast_2035_metric_tons)+' t';
+document.getElementById('rows').textContent=DATA.eda.n_rows;
+document.getElementById('modelName').textContent='RF';
+document.getElementById('rmse').textContent=fmt(DATA.meta.holdout_rmse);
+document.getElementById('r2').textContent=DATA.meta.holdout_r2.toFixed(2);
+
+const last=DATA.global_historical.values.at(-1);
+const kpis=[
+ ['2025 actual',fmt(last)+' t','observed'],
+ ['2030 forecast',fmt(DATA.meta.forecast_2030_metric_tons)+' t','model output'],
+ ['2035 forecast',fmt(DATA.meta.forecast_2035_metric_tons)+' t','model output'],
+ ['2025 → 2035',pct((DATA.meta.forecast_2035_metric_tons/last-1)*100),'model change']
+];
+document.getElementById('kpis').innerHTML=kpis.map(x=>`<div class="kpi"><div class="label">${x[0]}</div><div class="value">${x[1]}</div><div class="sub">${x[2]}</div></div>`).join('');
+
+let globalChart;
+function renderGlobal(horizon=10){
+ const histY=DATA.global_historical.years, histV=DATA.global_historical.values;
+ const fy=DATA.global_forecast.years.slice(0,horizon), fv=DATA.global_forecast.values.slice(0,horizon);
+ const labels=histY.concat(fy), hist=histV.concat(Array(horizon).fill(null));
+ const fore=Array(histY.length-1).fill(null).concat([histV.at(-1)],fv);
+ if(globalChart)globalChart.destroy();
+ globalChart=new Chart(document.getElementById('globalChart'),{
+  type:'line',data:{labels,datasets:[
+   {label:'Historical',data:hist,borderColor:cyan,backgroundColor:'rgba(84,224,193,.08)',fill:true,tension:.28,borderWidth:3,pointRadius:2},
+   {label:'Forecast',data:fore,borderColor:lime,borderDash:[8,7],tension:.28,borderWidth:3,pointRadius:2}
+  ]},
+  options:{responsive:true,maintainAspectRatio:false,interaction:{mode:'index',intersect:false},
+   plugins:{legend:{labels:{usePointStyle:true,padding:20}},tooltip:{backgroundColor:'#07110f',borderColor:'#203a34',borderWidth:1,padding:12,callbacks:{label:c=>`${c.dataset.label}: ${fmt(c.raw)} t`}}},
+   scales:{x:{grid:{color:grid}},y:{grid:{color:grid},ticks:{callback:v=>fmt(v)}}}
+  }
+ });
+}
+renderGlobal();
+
+document.querySelectorAll('[data-horizon]').forEach(b=>b.onclick=()=>{document.querySelectorAll('[data-horizon]').forEach(x=>x.classList.remove('active'));b.classList.add('active');renderGlobal(+b.dataset.horizon)});
+
+const slider=document.getElementById('yearSlider'), badge=document.getElementById('yearBadge');
+slider.oninput=()=>{badge.textContent=slider.value};
+
+let countryChart;
+function renderCountry(country){
+ const h=DATA.country_historical[country], f=DATA.country_forecast[country];
+ const labels=h.years.concat(f.years), hs=h.values.concat(Array(f.years.length).fill(null));
+ const fs=Array(h.years.length-1).fill(null).concat([h.values.at(-1)],f.values);
+ const row=DATA.leaderboard.find(x=>x.country===country);
+ document.getElementById('countryTitle').textContent=country;
+ document.getElementById('countryDelta').textContent=pct(row.pct_change)+' by 2035';
+ if(countryChart)countryChart.destroy();
+ countryChart=new Chart(document.getElementById('countryChart'),{
+  type:'line',data:{labels,datasets:[
+   {label:'Historical',data:hs,borderColor:cyan,tension:.28,borderWidth:3,pointRadius:2},
+   {label:'Forecast',data:fs,borderColor:orange,borderDash:[8,7],tension:.28,borderWidth:3,pointRadius:2}
+  ]},
+  options:{responsive:true,maintainAspectRatio:false,interaction:{mode:'index',intersect:false},
+   plugins:{legend:{labels:{usePointStyle:true}},tooltip:{backgroundColor:'#07110f',callbacks:{label:c=>`${c.dataset.label}: ${fmt(c.raw)} t`}}},
+   scales:{x:{grid:{color:grid}},y:{grid:{color:grid},ticks:{callback:v=>fmt(v)}}}
+  }
+ });
+ document.querySelectorAll('.country').forEach(b=>b.classList.toggle('active',b.dataset.country===country));
+}
+document.getElementById('countryButtons').innerHTML=DATA.countries.map(c=>`<button class="country" data-country="${c}">${c}</button>`).join('');
+document.querySelectorAll('.country').forEach(b=>b.onclick=()=>renderCountry(b.dataset.country));
+renderCountry('India');
+
+new Chart(document.getElementById('modelChart'),{
+ type:'bar',
+ data:{labels:DATA.model_comparison.map(x=>x.Model),datasets:[{label:'RMSE',data:DATA.model_comparison.map(x=>x.RMSE),backgroundColor:[lime,cyan,orange],borderRadius:8}]},
+ options:{responsive:true,maintainAspectRatio:false,indexAxis:'y',plugins:{legend:{display:false},tooltip:{backgroundColor:'#07110f',callbacks:{label:c=>`RMSE: ${fmt(c.raw)}`}}},scales:{x:{grid:{color:grid}},y:{grid:{display:false}}}}
+});
+
+document.getElementById('tableBody').innerHTML=DATA.leaderboard.map(r=>`<tr><td><strong>${r.country}</strong></td><td>${fmt(r.actual_2025)} t</td><td>${fmt(r.forecast_2035)} t</td><td style="color:${r.pct_change>0?orange:cyan}">${pct(r.pct_change)}</td></tr>`).join('');
+</script>
+</body></html>

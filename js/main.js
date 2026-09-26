@@ -148,6 +148,80 @@ const assignmentsData = [
             reflection: "<b>• What surprised me?</b><br>I was surprised to discover that a device as small as wired earphones contains several valuable and complex materials hidden inside.<br><br><b>• What challenge did I face?</b><br>The biggest challenge during dismantling was dealing with glued/closed casings and permanently soldered wires, which made separating the mixed materials very difficult.<br><br><b>• What will I do differently?</b><br>I will no longer look at broken electronics simply as 'waste,' because many of their components can actually be repaired, reused, or recycled if managed properly. I will also advocate for designing devices for easy repair to extend product life and reduce e-waste.",
             references: "Device Anatomy 2.0 - E-Waste & Environmental Management Worksheet (Group 6)."
         }
+    },
+
+{
+        title: "Assignment 7: E-Waste Data Analysis Challenge",
+        category: "Data Analysis",
+        date: "16/09/2026",
+        shortDesc: "Analyzed historical tech gadget consumption data to forecast global e-waste generation through 2035 using Machine Learning.",
+        images: [
+            "img/dashboard_preview.png"
+        ],
+        buttons: [
+            {
+                label: "View Interactive Dashboard",
+                link: "pdf/ewaste_dashboard_interactive.html",
+                icon: "ri-dashboard-3-line",
+                type: "primary"
+            },
+            {
+                label: "Open Google Colab Notebook",
+                link: "https://colab.research.google.com/drive/1PZ161fGfrzI8wDUhg6xNz9zvH33O7vw5?usp=sharing", // Replace with your Colab shareable link
+                icon: "ri-code-s-slash-line",
+                type: "secondary"
+            },
+            {
+                label: "View Kaggle Dataset",
+                link: "https://www.kaggle.com/datasets/atharvasoundankar/global-tech-gadget-consumption-data-2015-2025", // Replace with your Kaggle dataset link
+                icon: "ri-database-2-line",
+                type: "secondary"
+            }
+        ],
+        sections: {
+            title: "E-Waste 2050 Forecast Intelligence & Data Analysis",
+            objective: "To analyse real-world e-waste data and derive meaningful insights using data analysis and visualization techniques.",
+            evidence: "• Interactive E-Waste Forecast Dashboard (HTML)<br>• Random Forest ML Forecast Model (Jupyter Notebook)<br>• Kaggle Dataset: Global Tech Gadget Consumption (110 Country-Year Observations)",
+            learned: "Through this data analysis activity, I processed 110 country-year observations spanning 10 countries. I evaluated multiple machine learning regression models (Ridge, Gradient Boosting, and Random Forest) to predict future e-waste generation based on tech consumption indicators including smartphone sales, laptop shipments, and 5G penetration. The Random Forest model achieved the lowest RMSE (554.6 metric tons) on the 2023–2025 time-based holdout test. We integrated this recursive model into a real-time interactive dashboard visualizing global projections up to 2035.",
+            sustainability: "Data-driven forecasting is essential for proactive environmental planning. Modeling gadget lifecycles, adoption rates, and consumer gadget expenditure allows recyclers, manufacturers, and municipal bodies to plan infrastructure capacity and enforce circular economy mandates before disposal volumes overwhelm formal channels.",
+            reflection: "<b>• What surprised me?</b><br>I was surprised by the significant variance in projected 2035 trends across nations, highlighting how gadget adoption velocity directly dictates waste accumulation curves.<br><br><b>• What challenge did I face?</b><br>Ensuring the multi-year forecast ran recursively without hardcoded future inputs, requiring predictive modeling of future technological covariates based on historical regression trends.<br><br><b>• What will I do differently?</b><br>I will incorporate national regulatory indices and formal collection rates into the dataset to refine long-horizon R² precision.",
+            references: "Global Tech Gadget Consumption Dataset (Kaggle), Random Forest Forecast Notebook, Interactive Dashboard."
+        }
+    },
+    {
+        title: "Assignment 8: Case Study – Samsung's Trade-In & Recycling Programs",
+        category: "Case Study",
+        date: "23/09/2026",
+        shortDesc: "Comprehensive case study on Samsung's product stewardship, closed-loop cobalt recovery, refurbishment pipelines, and India's EPR regulatory framework.",
+        images: [
+            "img/CASE1.jpeg",
+            "img/CASE2.jpeg",
+            "img/CASE3.jpeg",
+            "img/CASE4.jpeg"
+        ],
+        buttons: [
+            {
+                label: "View Case Study Report PDF",
+                link: "pdf/Samsung's Trade-In and Recycling Programs Report.pdf",
+                icon: "ri-file-pdf-line",
+                type: "primary"
+            },
+            {
+                label: "View Presentation Slides (PPT)",
+                link: "pdf/Samsung_Circular_Economy_Case_Study.pdf",
+                icon: "ri-slideshow-line",
+                type: "secondary"
+            }
+        ],
+        sections: {
+            title: "Samsung's Trade-In & Recycling Programs: A Case Study in E-Waste Management and the Circular Economy",
+            objective: "To examine and critically evaluate Samsung's product stewardship, trade-in mechanisms, refurbishment pipelines (Certified Re-Newed), and closed-loop material recycling under global frameworks and India's E-Waste (Management) Rules, 2022.",
+            evidence: "• Case Study Report & Presentation under Subject Professor In-charge: Prof. Nilima Main (S.E. Semester V)<br>• Team Members: Imran Shaikh (24101B0054), Amol Patil (24101B0056), Rohit Rathod (24101B0058), Nikhat Momin (24101B0064), Swapnil Bhabal (24101B0065), Yash Jadhav (24101B0068), Snigdha Seepa (24101B0075), Tanvee Kamble (24101B0076), Shriya Vibhute (24101B0078), Malhaar Nikam (24101B0083)<br>• In-Class Presentation Photos (CASE 1 to CASE 4) & Technical Report analyzing 7.54M tonnes cumulative collection data",
+            learned: "Through this case study, I analyzed how trade-in functions as an intake mechanism into a controlled circular system rather than recycling itself. Following condition assessment, devices are channeled into refurbishment (Galaxy Certified Re-Newed with 1-year warranty at up to ~85% of launch price) or recycling across a 7-stage chain: collection, sorting, dismantling, pre-processing, material recovery, processing, and manufacturing. I also examined the closed-loop battery ecosystem where discarded Galaxy batteries are safely discharged, shredded, and processed to recover cobalt for new battery manufacturing in Galaxy S24/S25 series. In India, Samsung operates via 'Care for Clean India' across 10 product categories within the Extended Producer Responsibility (EPR) statutory framework.",
+            sustainability: "This case illustrates the structural shift from a linear 'take-make-dispose' model to a circular 'keep-recover-reuse' framework. Keeping devices in use longer through refurbishment preserves maximum original manufacturing value. Furthermore, closed-loop extraction of critical minerals (copper, aluminum, gold, and cobalt) reduces dependence on destructive virgin mining. In India, corporate compliance with the E-Waste (Management) Rules 2022 channels electronics away from hazardous informal burning and acid leaching, safeguarding soil and water ecosystems.",
+            reflection: "<b>• What surprised me?</b><br>I was surprised that Samsung's 16-year cumulative collection (7.54 million tonnes) represents only ~12% of the e-waste generated globally in the single year 2022 (62 million tonnes), highlighting the immense scale of the global e-waste challenge.<br><br><b>• What challenge did I face?</b><br>Critically evaluating corporate self-reported metrics—recognizing that collection volume alone does not prove circularity without transparent reporting on exact reuse, refurbishment, and material recovery yield percentages.<br><br><b>• What will I do differently?</b><br>I will advocate for outcome-based circular reporting metrics (measuring recycled content and refurbishment rates rather than raw intake tonnage) and support integrating informal scrap collectors into formal EPR collection channels.",
+            references: "Global E-waste Monitor 2024 (ITU/UNITAR), Samsung Electronics Sustainability Reports (2009–2025), Samsung Care for Clean India, India E-Waste (Management) Rules 2022 (MoEFCC / CPCB)."
+        }
     }
 ];
 
@@ -196,19 +270,50 @@ function openModal(index) {
     modalTitle.textContent = data.title;
     modalDate.textContent = "Date: " + data.date;
     modalTag.textContent = data.category;
-    modalPdf.href = data.pdfLink;
 
-    // Toggle Video Button conditionally
-    if (data.videoLink) {
-        modalVideo.href = data.videoLink;
-        modalVideo.classList.remove('hidden');
-        modalVideo.classList.add('flex');
+    // Render Action Buttons Dynamically
+    const modalActions = document.getElementById('modal-actions');
+    modalActions.innerHTML = '';
+
+    if (data.buttons && data.buttons.length > 0) {
+        data.buttons.forEach(btn => {
+            const a = document.createElement('a');
+            a.href = btn.link || '#';
+            a.target = '_blank';
+            
+            let btnClasses = "w-full py-3 rounded-xl font-bold text-sm flex items-center justify-center gap-2 transition-all ";
+            if (btn.type === 'primary') {
+                btnClasses += "bg-eco-600 text-eco-900 hover:bg-eco-500 shadow-[0_0_20px_rgba(34,197,94,0.3)]";
+            } else if (btn.type === 'video' || btn.type === 'red') {
+                btnClasses += "bg-red-600/90 text-white hover:bg-red-500 shadow-[0_0_20px_rgba(220,38,38,0.3)]";
+            } else {
+                btnClasses += "bg-eco-800/90 text-eco-400 border border-eco-500/30 hover:bg-eco-700/80 hover:text-white";
+            }
+            a.className = btnClasses;
+            a.innerHTML = `<i class="${btn.icon || 'ri-link'} text-lg"></i> ${btn.label}`;
+            modalActions.appendChild(a);
+        });
     } else {
-        modalVideo.classList.add('hidden');
-        modalVideo.classList.remove('flex');
+        // Fallback for earlier assignments (1 to 6)
+        if (data.pdfLink) {
+            const pdfBtn = document.createElement('a');
+            pdfBtn.href = data.pdfLink;
+            pdfBtn.target = '_blank';
+            pdfBtn.className = "w-full py-3.5 rounded-xl bg-eco-600 text-eco-900 font-bold text-sm flex items-center justify-center gap-2 hover:bg-eco-500 transition-all shadow-[0_0_20px_rgba(34,197,94,0.3)]";
+            pdfBtn.innerHTML = `<i class="ri-file-pdf-line text-lg"></i> Download / View Assignment PDF`;
+            modalActions.appendChild(pdfBtn);
+        }
+        if (data.videoLink) {
+            const vidBtn = document.createElement('a');
+            vidBtn.href = data.videoLink;
+            vidBtn.target = '_blank';
+            vidBtn.className = "w-full py-3.5 rounded-xl bg-red-600/90 text-white font-bold text-sm flex items-center justify-center gap-2 hover:bg-red-500 transition-all shadow-[0_0_20px_rgba(220,38,38,0.3)]";
+            vidBtn.innerHTML = `<i class="ri-youtube-fill text-xl"></i> Watch Reference Video`;
+            modalActions.appendChild(vidBtn);
+        }
     }
 
-    // Handle multi-image arrays or single image fallbacks seamlessly
+    // Handle image carousel
     currentImages = data.images || (data.image ? [data.image] : ["img/about_me.jpg"]);
     currentImageIndex = 0;
     updateModalImage();
