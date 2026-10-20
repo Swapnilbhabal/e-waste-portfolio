@@ -570,6 +570,17 @@ const assignmentsData = [
         if (lastFocus) lastFocus.focus({ preventScroll: true });
     }
 
+    // size the viewer to the picture's own shape (portrait = taller, screenshot = wider)
+    const viewer = $("#viewer");
+    function fitViewer() {
+        const w = modalImage.naturalWidth, h = modalImage.naturalHeight;
+        if (!w || !h || !viewer.clientWidth) return;
+        const maxH = Math.min(innerHeight * (innerWidth < 960 ? 0.6 : 0.66), 720);
+        viewer.style.height = Math.round(Math.max(200, Math.min(maxH, viewer.clientWidth * h / w))) + "px";
+    }
+    modalImage.addEventListener("load", fitViewer);
+    addEventListener("resize", () => { if (modal.classList.contains("open")) fitViewer(); });
+
     function updateModalImage(instant) {
         const src = currentImages[currentImageIndex];
         const show = () => { modalImage.dataset.orig = src; modalImage.src = pic(src, "lg"); modalImage.classList.remove("swap"); };
@@ -822,7 +833,7 @@ const assignmentsData = [
         if (!cv || reduceMotion) return;
         const ctx = cv.getContext("2d");
         let W = 0, H = 0, dpr = 1, parts = [];
-        const LEAF_COLORS = ["#6fb488", "#9fcb6b", "#d39a5c", "#8fc3ad", "#b9d989"];
+        const LEAF_COLORS = ["#5aa877", "#8fc25a", "#cf8d4a", "#77b79c", "#a9cf6f"];
         function resize() {
             dpr = Math.min(2, devicePixelRatio || 1);
             W = cv.width = Math.round(innerWidth * dpr);
@@ -831,7 +842,7 @@ const assignmentsData = [
         function spawn(randomY) {
             return {
                 x: Math.random() * W, y: randomY ? Math.random() * H : -20 * dpr,
-                s: (0.7 + Math.random() * 0.8) * dpr,
+                s: (0.8 + Math.random() * 0.7) * dpr,
                 vx: (Math.random() - 0.5) * 0.3 * dpr, vy: (0.25 + Math.random() * 0.45) * dpr,
                 rot: Math.random() * Math.PI * 2, vr: (Math.random() - 0.5) * 0.015,
                 ph: Math.random() * Math.PI * 2, sp: 0.6 + Math.random() * 1.4,
@@ -850,21 +861,33 @@ const assignmentsData = [
             p.rot += p.vr + sway * 0.004;
             if (p.y > H + 30 * dpr) Object.assign(p, spawn(false));
             if (p.x < -30) p.x = W + 20; if (p.x > W + 30) p.x = -20;
-            const L = 9 * p.s;
+            const L = 12.5 * p.s;                      // leaf half-length (a little bigger than before)
+            const flip = 0.55 + 0.45 * Math.abs(Math.cos(t * 0.0009 * p.sp + p.ph)); // gentle 3D flutter
             ctx.save();
             ctx.translate(p.x, p.y);
             ctx.rotate(p.rot);
-            ctx.globalAlpha = 0.42;
+            ctx.scale(1, flip);
+            // body
+            ctx.globalAlpha = 0.62;
             ctx.fillStyle = p.c;
             ctx.beginPath();
             ctx.moveTo(-L, 0);
             ctx.quadraticCurveTo(0, -L * 0.62, L, 0);
             ctx.quadraticCurveTo(0, L * 0.62, -L, 0);
             ctx.fill();
-            ctx.globalAlpha = 0.35;
-            ctx.strokeStyle = "#ffffff";
-            ctx.lineWidth = 0.8 * dpr;
-            ctx.beginPath(); ctx.moveTo(-L * 0.8, 0); ctx.lineTo(L * 0.8, 0); ctx.stroke();
+            // darker half for depth
+            ctx.globalAlpha = 0.18;
+            ctx.fillStyle = "#1d5a38";
+            ctx.beginPath();
+            ctx.moveTo(-L, 0);
+            ctx.quadraticCurveTo(0, L * 0.62, L, 0);
+            ctx.closePath();
+            ctx.fill();
+            // vein + small stem
+            ctx.globalAlpha = 0.55;
+            ctx.strokeStyle = "#2f6b45";
+            ctx.lineWidth = 0.9 * dpr;
+            ctx.beginPath(); ctx.moveTo(-L * 1.25, 0); ctx.lineTo(L * 0.8, 0); ctx.stroke();
             ctx.restore();
         }
         function firefly(p, t) {
