@@ -1,284 +1,331 @@
 <!DOCTYPE html>
-<html lang="en" class="scroll-smooth">
+<html lang="en" data-theme="light">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Swapnil Bhabal | E-Waste & Environmental Management Portfolio</title>
-    
-    <!-- Tailwind CSS CDN -->
-    <script src="https://cdn.tailwindcss.com"></script>
+    <meta name="description" content="Academic e-portfolio of Swapnil Bhabal (IT, VIT Mumbai) for E-Waste & Environmental Management (VEC02): assignments, case studies, certificates and the EcoScrap green hackathon project.">
+    <meta name="theme-color" content="#f4f1e8">
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Ccircle cx='32' cy='32' r='32' fill='%231d7a4c'/%3E%3Ctext x='32' y='42' text-anchor='middle' font-family='Georgia,serif' font-size='28' font-weight='700' fill='%23fff'%3ESB%3C/text%3E%3C/svg%3E">
+
+    <!-- Theme before paint: light by default, remembers the visitor's choice -->
     <script>
-        tailwind.config = {
-            darkMode: 'class',
-            theme: {
-                extend: {
-                    colors: {
-                        eco: {
-                            900: '#06110d',
-                            800: '#0d1f19',
-                            700: '#122b22',
-                            600: '#16c172',
-                            500: '#22c55e',
-                            400: '#47ff9b',
-                            light: '#f6f6f6'
-                        }
-                    },
-                    fontFamily: {
-                        sans: ['Poppins', 'sans-serif'],
-                        display: ['Outfit', 'sans-serif']
-                    }
-                }
-            }
-        }
+        (function () {
+            var t = 'light';
+            try { t = localStorage.getItem('eco-theme') || 'light'; } catch (e) {}
+            document.documentElement.setAttribute('data-theme', t);
+            document.documentElement.classList.add('js');
+        })();
     </script>
 
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght,SOFT@0,9..144,300..700,0..100;1,9..144,300..700,0..100&family=Hanken+Grotesk:wght@400..800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
     <!-- Remix Icons -->
     <link href="https://cdn.jsdelivr.net/npm/remixicon@4.6.0/fonts/remixicon.css" rel="stylesheet">
-    <!-- AOS Animation CSS -->
-    <link href="https://unpkg.com/aos@2.3.4/dist/aos.css" rel="stylesheet">
     <!-- Custom Stylesheet -->
     <link rel="stylesheet" href="css/style.css">
 </head>
-<body class="bg-eco-900 text-eco-light font-sans antialiased overflow-x-hidden selection:bg-eco-600 selection:text-white">
-
-    <!-- Custom Cursor -->
-    <div class="cursor hidden md:block"></div>
+<body>
+    <a class="skip" href="#main">Skip to content</a>
+    <div class="progress" aria-hidden="true"></div>
+    <div class="atmos" aria-hidden="true">
+        <div class="wash w1"></div><div class="wash w2"></div><div class="wash w3"></div><div class="wash w4"></div>
+        <div class="aurora"></div>
+        <svg class="topo" id="topo" preserveAspectRatio="xMidYMid slice"></svg>
+    </div>
+    <canvas id="ambient" aria-hidden="true"></canvas>
+    <div class="sun" aria-hidden="true"></div>
+    <div class="grain" aria-hidden="true"></div>
+    <div class="cursor-dot" aria-hidden="true"></div>
+    <div class="cursor-ring" aria-hidden="true"></div>
 
 <!-- ================= HEADER / NAVBAR ================= -->
-    <header id="header" class="fixed top-0 left-0 w-full z-50 transition-all duration-300 backdrop-blur-md bg-eco-900/80 border-b border-white/5">
-        <nav class="container mx-auto px-6 h-20 flex items-center justify-between">
-            <a href="#home" class="font-display text-xl font-bold tracking-wider text-white flex items-center gap-2">
-                <i class="ri-recycle-line text-eco-400 text-2xl animate-spin-slow"></i> Swapnil.<span class="text-eco-400">Eco</span>
+    <header id="header" class="header">
+        <div class="wrap">
+            <a href="#home" class="logo" aria-label="Swapnil.Eco – back to top">
+                <span class="logo-mark"><i class="ri-recycle-line"></i></span><span class="logo-text">Swapnil.<span>Eco</span></span>
             </a>
 
             <!-- Desktop Menu -->
-            <ul class="hidden md:flex items-center gap-5 font-medium text-sm">
-                <li><a href="#home" class="hover:text-eco-400 transition-colors">Home</a></li>
-                <li><a href="#about" class="hover:text-eco-400 transition-colors">About</a></li>
-                <li><a href="#course" class="hover:text-eco-400 transition-colors">Course Info</a></li>
-                <li><a href="#ewaste-info" class="hover:text-eco-400 transition-colors">E-Waste Facts</a></li>
-                <li><a href="#skills" class="hover:text-eco-400 transition-colors">Skills</a></li>
-                <li><a href="#assignments" class="hover:text-eco-400 transition-colors">Assignments</a></li>
-                <li><a href="#certifications" class="hover:text-eco-400 transition-colors">Certificates</a></li>
-                <li><a href="#contact" class="hover:text-eco-400 transition-colors">Contact</a></li>
-            </ul>
+            <nav class="nav" aria-label="Sections">
+                <span class="nav-pill" aria-hidden="true"></span>
+                <a href="#home">Home</a>
+                <a href="#about">About</a>
+                <a href="#course">Course Info</a>
+                <a href="#ewaste-info">E-Waste Facts</a>
+                <a href="#skills">Skills</a>
+                <a href="#assignments">Assignments</a>
+                <a href="#certifications">Certificates</a>
+                <a href="#contact">Contact</a>
+            </nav>
 
-            <a href="pdf/Swapnil Bhabal Resume.pdf" download target="_blank" class="hidden lg:inline-flex items-center gap-2 px-5 py-2.5 rounded-full border border-eco-500 text-eco-400 font-semibold text-xs tracking-wider uppercase hover:bg-eco-500 hover:text-eco-900 transition-all shadow-[0_0_20px_rgba(34,197,94,0.2)]">
-                Resume <i class="ri-download-line"></i>
-            </a>
-        </nav>
+            <div class="header-actions">
+                <button class="theme-switch" id="themeToggle" type="button" aria-label="Switch between light and dark mode" title="Light / Dark mode (T)">
+                    <i class="hint d ri-sun-line" aria-hidden="true"></i>
+                    <i class="hint l ri-moon-line" aria-hidden="true"></i>
+                    <span class="knob"><i class="ri-sun-fill"></i><i class="ri-moon-clear-fill"></i></span>
+                </button>
+                <a href="pdf/Swapnil Bhabal Resume.pdf" download="Swapnil Bhabal Resume.pdf" class="btn primary resume-btn magnetic" aria-label="Download Resume">
+                    <span>Resume</span> <i class="ri-download-line"></i>
+                </a>
+                <button class="icon-btn menu-btn" id="menuOpen" type="button" aria-label="Open menu"><i class="ri-menu-4-line"></i></button>
+            </div>
+        </div>
     </header>
 
-    <!-- ================= MAIN CONTENT ================= -->
-    <main>
-        
-        <!-- ================= HERO SECTION ================= -->
-        <section id="home" class="min-h-screen relative flex items-center pt-24 pb-12 overflow-hidden">
-            <div class="absolute top-1/4 left-10 w-96 h-96 bg-eco-600/10 rounded-full blur-[120px] pointer-events-none"></div>
-            <div class="absolute bottom-10 right-10 w-96 h-96 bg-emerald-500/10 rounded-full blur-[120px] pointer-events-none"></div>
+    <!-- Mobile menu -->
+    <div class="drawer" id="drawer" aria-hidden="true">
+        <div class="drawer-bg" data-close></div>
+        <div class="drawer-panel" role="dialog" aria-label="Menu">
+            <div class="drawer-top">
+                <span class="logo" style="box-shadow:none;padding-left:0;background:none"><span class="logo-mark"><i class="ri-recycle-line"></i></span><span class="logo-text">Swapnil.<span>Eco</span></span></span>
+                <button class="icon-btn" type="button" data-close aria-label="Close menu"><i class="ri-close-line"></i></button>
+            </div>
+            <nav>
+                <a href="#home" data-close>Home <small>01</small></a>
+                <a href="#about" data-close>About <small>02</small></a>
+                <a href="#course" data-close>Course Info <small>03</small></a>
+                <a href="#ewaste-info" data-close>E-Waste Facts <small>04</small></a>
+                <a href="#skills" data-close>Skills <small>05</small></a>
+                <a href="#assignments" data-close>Assignments <small>06</small></a>
+                <a href="#certifications" data-close>Certificates <small>07</small></a>
+                <a href="#contact" data-close>Contact <small>08</small></a>
+            </nav>
+            <a href="pdf/Swapnil Bhabal Resume.pdf" download="Swapnil Bhabal Resume.pdf" class="btn primary">Resume <i class="ri-download-line"></i></a>
+        </div>
+    </div>
 
-            <div class="container mx-auto px-6 grid lg:grid-cols-2 gap-12 items-center relative z-10">
-                <div class="space-y-6" data-aos="fade-right" data-aos-duration="1000">
-                    <span class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-eco-700/50 border border-eco-600/30 text-eco-400 text-xs font-semibold tracking-widest uppercase">
-                        <i class="ri-leaf-line"></i> Academic E-Portfolio 2026
-                    </span>
-                    <h1 class="font-display text-4xl sm:text-6xl font-bold leading-tight tracking-tight text-white">
-                        E-Waste & <br><span class="text-transparent bg-clip-text bg-gradient-to-r from-eco-400 to-emerald-500">Environmental Management</span>
+    <!-- ================= MAIN CONTENT ================= -->
+    <main id="main">
+
+        <!-- ================= HERO SECTION ================= -->
+        <section id="home" class="hero">
+            <div class="hero-bg" aria-hidden="true">
+                <div class="hero-glow g1"></div>
+                <div class="hero-glow g2"></div>
+                <svg id="traces" viewBox="0 0 1440 900" preserveAspectRatio="xMidYMid slice"></svg>
+            </div>
+
+            <div class="wrap hero-grid">
+                <div>
+                    <span class="hero-badge rv"><span class="dot"><i class="ri-leaf-line"></i></span> Academic E-Portfolio 2026</span>
+                    <h1>
+                        <span class="line"><span>E-Waste <i class="amp">&amp;</i></span></span>
+                        <span class="line"><span><em>Environmental</em></span></span>
+                        <span class="line"><span>Management</span></span>
                     </h1>
-                    <p class="text-lg text-gray-300 h-8">
-                        <span id="typed-text" class="text-eco-400 font-semibold"></span>
-                    </p>
-                    <p class="text-gray-400 max-w-lg leading-relaxed">
+                    <p class="typed-row rv" style="--d:.35s"><span class="pre">&gt;_</span><span><span id="typed-text"></span><span class="typed-caret" aria-hidden="true"></span></span></p>
+                    <p class="hero-lead rv" style="--d:.45s">
                         Welcome to my specialized academic repository documenting sustainable IT infrastructure, circular economy frameworks, and responsible e-waste recycling initiatives.
                     </p>
-                    
-                    <div class="flex flex-wrap gap-4 pt-4">
-                        <a href="#assignments" class="px-8 py-4 rounded-full bg-eco-600 hover:bg-eco-500 text-eco-900 font-bold transition-all shadow-[0_0_30px_rgba(34,197,94,0.4)] flex items-center gap-3">
+
+                    <div class="hero-cta rv" style="--d:.55s">
+                        <a href="#assignments" class="btn primary magnetic">
                             Explore Assignments <i class="ri-arrow-right-line"></i>
                         </a>
-                        <a href="pdf/Swapnil Bhabal Resume.pdf" download target="_blank" class="px-8 py-4 rounded-full border border-eco-500 text-eco-400 font-semibold transition-all backdrop-blur-sm bg-eco-800/40 hover:bg-eco-500 hover:text-eco-900 flex items-center gap-3">
+                        <a href="pdf/Swapnil Bhabal Resume.pdf" download="Swapnil Bhabal Resume.pdf" class="btn ghost magnetic">
                             Download Resume <i class="ri-download-line"></i>
                         </a>
                     </div>
 
                     <!-- Social Icons -->
-                    <div class="flex items-center gap-4 pt-4 text-xl">
-                        <a href="https://www.linkedin.com/in/swapnil-bhabal-29b13b344/" target="_blank" class="w-10 h-10 rounded-full bg-eco-800 border border-white/10 flex items-center justify-center hover:text-eco-400 hover:border-eco-500 transition-all"><i class="ri-linkedin-fill"></i></a>
-                        <a href="https://github.com/Swapnilbhabal" target="_blank" class="w-10 h-10 rounded-full bg-eco-800 border border-white/10 flex items-center justify-center hover:text-eco-400 hover:border-eco-500 transition-all"><i class="ri-github-fill"></i></a>
-                        <a href="mailto:swapnil.bhabal@vit.edu.in" class="w-10 h-10 rounded-full bg-eco-800 border border-white/10 flex items-center justify-center hover:text-eco-400 hover:border-eco-500 transition-all"><i class="ri-mail-fill"></i></a>
+                    <div class="socials rv" style="--d:.65s">
+                        <span class="lbl">Find me</span>
+                        <a href="https://www.linkedin.com/in/swapnil-bhabal-29b13b344/" target="_blank" rel="noopener" class="social" aria-label="LinkedIn"><i class="ri-linkedin-fill"></i></a>
+                        <a href="https://github.com/Swapnilbhabal" target="_blank" rel="noopener" class="social" aria-label="GitHub"><i class="ri-github-fill"></i></a>
+                        <a href="mailto:swapnil.bhabal@vit.edu.in" class="social" aria-label="Email"><i class="ri-mail-fill"></i></a>
                     </div>
                 </div>
 
-                <!-- Hero Right: Glass Student Card -->
-                <div class="relative flex justify-center" data-aos="fade-left" data-aos-duration="1000">
-                    <div class="relative w-full max-w-md p-8 rounded-[2.5rem] bg-eco-800/60 border border-white/10 backdrop-blur-xl shadow-2xl space-y-6">
-                        <div class="absolute -top-6 -right-6 w-24 h-24 bg-eco-600/20 rounded-full blur-xl"></div>
-                        
-                        <div class="flex items-center gap-4">
-                            <div class="w-16 h-16 rounded-2xl bg-eco-700 border border-eco-500 flex items-center justify-center text-eco-400 text-2xl font-bold font-display">
-                                SB
-                            </div>
+                <!-- Hero Right: Student ID Card -->
+                <div class="id-wrap rv-scale" style="--d:.3s">
+                    <div class="id-card" id="idCard">
+                        <div class="id-head">
+                            <span class="mono">Student ID · VIT Mumbai</span>
+                            <span class="id-chip" aria-hidden="true"></span>
+                        </div>
+
+                        <div class="id-person">
+                            <div class="id-avatar">SB</div>
                             <div>
-                                <h3 class="font-display text-xl font-bold text-white">Swapnil Bhabal</h3>
-                                <p class="text-sm text-eco-400">IT Engineering Student</p>
+                                <h3>Swapnil Bhabal</h3>
+                                <p>IT Engineering Student</p>
                             </div>
                         </div>
 
-                        <div class="grid grid-cols-2 gap-4 pt-2 border-t border-white/10">
+                        <div class="id-fields">
                             <div>
-                                <span class="text-xs text-gray-400 uppercase tracking-wider">Department</span>
-                                <p class="font-medium text-white text-sm">Information Technology</p>
+                                <span>Department</span>
+                                <p>Information Technology</p>
                             </div>
                             <div>
-                                <span class="text-xs text-gray-400 uppercase tracking-wider">College</span>
-                                <p class="font-medium text-white text-sm">VIT Mumbai</p>
+                                <span>College</span>
+                                <p>VIT Mumbai</p>
                             </div>
                             <div>
-                                <span class="text-xs text-gray-400 uppercase tracking-wider">Semester / Year</span>
-                                <p class="font-medium text-white text-sm">3rd Year (2026)</p>
+                                <span>Semester / Year</span>
+                                <p>3rd Year (2026)</p>
                             </div>
                             <div>
-                                <span class="text-xs text-gray-400 uppercase tracking-wider">Specialization</span>
-                                <p class="font-medium text-white text-sm">Artificial Intelligence and Machine Learning</p>
+                                <span>Specialization</span>
+                                <p>Artificial Intelligence and Machine Learning</p>
                             </div>
                         </div>
 
-                        <div class="p-4 rounded-xl bg-eco-900/50 border border-eco-600/20 text-xs text-gray-300 italic">
-                            "If it can't be reduced, reused, repaired, rebuilt, refurbished, refinished, resold, recycled, or composted, then it should be restricted, designed or removed from production."
-— Pete Seeger
-                        </div>
+                        <blockquote class="id-quote">
+                            If it can't be reduced, reused, repaired, rebuilt, refurbished, refinished, resold, recycled, or composted, then it should be restricted, designed or removed from production.
+                            <cite>— Pete Seeger</cite>
+                        </blockquote>
+
+                        <div class="id-barcode" aria-hidden="true"><i></i><span>24101B0065</span></div>
                     </div>
                 </div>
             </div>
+
+            <a href="#about" class="scroll-cue" aria-label="Scroll to About"><span class="mouse"></span>Scroll</a>
         </section>
+
+        <!-- Ticker (words from the Pete Seeger quote) -->
+        <div class="ticker-clip" aria-hidden="true">
+            <div class="ticker">
+                <div class="ticker-track" id="ticker"></div>
+            </div>
+        </div>
 
         <!-- ================= ABOUT ME ================= -->
-        <section id="about" class="py-24 relative">
-            <div class="container mx-auto px-6 grid lg:grid-cols-2 gap-12 items-center">
-                <div class="relative flex justify-center" data-aos="fade-right">
-                    <div class="w-72 sm:w-80 rounded-[3rem] overflow-hidden border-2 border-eco-500 shadow-[0_0_40px_rgba(34,197,94,0.3)] bg-eco-800 p-2 flex items-center justify-center">
-                        <img src="img/about_me.jpg" alt="Swapnil Bhabal" class="w-full h-auto rounded-[2.5rem] object-contain">
+        <section id="about" class="section">
+            <div class="wrap about-grid">
+                <div class="portrait rv-scale">
+                    <div class="portrait-frame">
+                        <img src="img/about_me.jpg" alt="Swapnil Bhabal">
+                    </div>
+                    <div class="portrait-tag"><i class="ri-map-pin-2-fill"></i> Mumbai, India</div>
+                    <div class="portrait-stamp" aria-hidden="true">
+                        <svg viewBox="0 0 120 120"><defs><path id="circ" d="M60,60 m-46,0 a46,46 0 1,1 92,0 a46,46 0 1,1 -92,0"/></defs><text><textPath href="#circ">Reduce · Reuse · Recycle · Repair · </textPath></text></svg>
+                        <i class="ri-plant-line"></i>
                     </div>
                 </div>
-                <div class="space-y-6" data-aos="fade-left">
-                    <h2 class="font-display text-3xl sm:text-4xl font-bold text-white">
-                        About <span class="text-eco-400">Swapnil Bhabal</span>
+                <div class="about-copy">
+                    <span class="eyebrow rv"><span class="idx">02</span><span class="bar"></span>About</span>
+                    <h2 class="h2 rv" style="--d:.08s">
+                        About <em>Swapnil Bhabal</em>
                     </h2>
-                    <p class="text-gray-300 leading-relaxed text-lg">
-                        I am an IT Engineering student at <b class="text-eco-400">Vidyalankar Institute of Technology (VIT), Mumbai</b>, passionate about combining core software engineering principles with sustainable environmental management practices.
+                    <p class="lead rv" style="--d:.16s">
+                        I am an IT Engineering student at <b>Vidyalankar Institute of Technology (VIT), Mumbai</b>, passionate about combining core software engineering principles with sustainable environmental management practices.
                     </p>
-                    <p class="text-gray-400 leading-relaxed">
-                        Through my coursework in <b class="text-white">E-Waste & Environmental Management</b>, I explore how electronics lifecycles impact natural ecosystems, and how green computing can minimize toxic footprints in tech hardware development.
+                    <p class="sub rv" style="--d:.22s">
+                        Through my coursework in <b>E-Waste & Environmental Management</b>, I explore how electronics lifecycles impact natural ecosystems, and how green computing can minimize toxic footprints in tech hardware development.
                     </p>
-                    <div class="flex gap-4 pt-2">
-                        <a href="pdf/Swapnil Bhabal Resume.pdf" download target="_blank" class="px-6 py-3 rounded-full bg-eco-800 border border-eco-600 text-eco-400 font-semibold hover:bg-eco-600 hover:text-eco-900 transition-all flex items-center gap-2">
-                            Download Resume <i class="ri-file-pdf-line"></i>
-                        </a>
+                    <div class="stats rv" style="--d:.3s">
+                        <div class="stat"><b><span data-count="10" id="statAssign">10</span><sup>+</sup></b><span class="lbl">Assignments documented</span></div>
+                        <div class="stat"><b><span data-count="15" id="statCerts">15</span></b><span class="lbl">Certificates earned</span></div>
+                        <div class="stat"><b><span data-count="2">2</span></b><span class="lbl">Course credits · VEC02</span></div>
                     </div>
+                    <a href="pdf/Swapnil Bhabal Resume.pdf" download="Swapnil Bhabal Resume.pdf" class="btn ghost magnetic rv" style="--d:.36s">
+                        Download Resume <i class="ri-file-pdf-line"></i>
+                    </a>
                 </div>
             </div>
         </section>
+
 <!-- ================= ABOUT THE COURSE SECTION (From Academic Administration Plan) ================= -->
-<section id="course" class="py-20 relative border-t border-white/5 bg-eco-950/40">
-    <div class="max-w-7xl mx-auto px-6">
+<section id="course" class="section alt">
+    <div class="wrap">
         <!-- Section Header -->
-        <div class="text-center max-w-3xl mx-auto mb-16" data-aos="fade-up">
-            <span class="px-4 py-1.5 rounded-full bg-eco-500/10 border border-eco-500/20 text-eco-400 text-xs font-semibold uppercase tracking-wider">
-                Academic Curriculum
-            </span>
-            <h2 class="font-display text-3xl md:text-5xl font-bold text-white mt-4">
-                About The Course
-            </h2>
-            <p class="text-gray-400 text-sm md:text-base mt-3">
-                Curricular structure, learning outcomes, and technical objectives for <span class="text-eco-400 font-semibold">E-Waste & Environmental Management (VEC02)</span> at Vidyalankar Institute of Technology (TE INFT, Sem V).
+        <div class="sec-head">
+            <div>
+                <span class="eyebrow rv"><span class="idx">03</span><span class="bar"></span>Academic Curriculum</span>
+                <h2 class="rv" style="--d:.08s">About The <em>Course</em></h2>
+            </div>
+            <p class="rv" style="--d:.16s">
+                Curricular structure, learning outcomes, and technical objectives for <span class="hl">E-Waste & Environmental Management (VEC02)</span> at Vidyalankar Institute of Technology (TE INFT, Sem V).
             </p>
         </div>
 
         <!-- Quick Course Metadata Cards -->
-        <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-12" data-aos="fade-up">
-            <div class="p-5 rounded-2xl bg-eco-900/40 border border-white/5">
-                <span class="text-xs text-gray-400 uppercase font-semibold">Course Code</span>
-                <p class="text-xl font-bold text-white mt-1">VEC02</p>
-                <span class="text-xs text-eco-400 mt-1 block">Autonomous Syllabus</span>
+        <div class="meta-grid">
+            <div class="card meta feature rv">
+                <span class="k">Course Code</span>
+                <p class="v">VEC02</p>
+                <span class="s">Autonomous Syllabus</span>
             </div>
-            <div class="p-5 rounded-2xl bg-eco-900/40 border border-white/5">
-                <span class="text-xs text-gray-400 uppercase font-semibold">Academic Year</span>
-                <p class="text-xl font-bold text-white mt-1">Semester V</p>
-                <span class="text-xs text-eco-400 mt-1 block">TE Information Technology</span>
+            <div class="card meta lift rv" style="--d:.06s">
+                <span class="k">Academic Year</span>
+                <p class="v">Semester V</p>
+                <span class="s">TE Information Technology</span>
             </div>
-            <div class="p-5 rounded-2xl bg-eco-900/40 border border-white/5">
-                <span class="text-xs text-gray-400 uppercase font-semibold">Faculty / Mentors</span>
-                <p class="text-base font-bold text-white mt-1">Prof. Nilima Main</p>
-                <span class="text-xs text-gray-400 block">Prof. Sonaali Borkar (Cluster)</span>
+            <div class="card meta lift rv" style="--d:.12s">
+                <span class="k">Faculty / Mentors</span>
+                <p class="v sm">Prof. Nilima Main</p>
+                <span class="s muted">Prof. Sonaali Borkar (Cluster)</span>
             </div>
-            <div class="p-5 rounded-2xl bg-eco-900/40 border border-white/5">
-                <span class="text-xs text-gray-400 uppercase font-semibold">Total Credits & Assessment</span>
-                <p class="text-xl font-bold text-white mt-1">2 Credits (75 Marks)</p>
-                <span class="text-xs text-eco-400 mt-1 block">In-Semester Assessment (ISA)</span>
+            <div class="card meta lift rv" style="--d:.18s">
+                <span class="k">Total Credits & Assessment</span>
+                <p class="v sm">2 Credits (75 Marks)</p>
+                <span class="s">In-Semester Assessment (ISA)</span>
             </div>
         </div>
 
         <!-- 3 Pillars: Cognitive, Affective, Behavioural -->
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-16" data-aos="fade-up">
-            <div class="p-6 rounded-2xl bg-eco-900/30 border border-eco-500/20">
-                <div class="w-10 h-10 rounded-xl bg-eco-500/10 text-eco-400 flex items-center justify-center text-xl mb-4">
-                    <i class="ri-brain-line"></i>
-                </div>
-                <h3 class="text-lg font-bold text-white">Cognitive Objective</h3>
-                <p class="text-gray-400 text-sm mt-2 leading-relaxed">
+        <div class="pillars">
+            <div class="card pillar spot lift rv" style="--accent:var(--leaf);--soft:var(--leaf-soft)">
+                <span class="no">i</span>
+                <div class="ico"><i class="ri-brain-line"></i></div>
+                <h3>Cognitive Objective</h3>
+                <p>
                     Apply knowledge of engineering materials and physical teardown to design technically sound systems and adapt to green innovations.
                 </p>
             </div>
-            <div class="p-6 rounded-2xl bg-eco-900/30 border border-eco-500/20">
-                <div class="w-10 h-10 rounded-xl bg-eco-500/10 text-eco-400 flex items-center justify-center text-xl mb-4">
-                    <i class="ri-heart-pulse-line"></i>
-                </div>
-                <h3 class="text-lg font-bold text-white">Affective Objective</h3>
-                <p class="text-gray-400 text-sm mt-2 leading-relaxed">
+            <div class="card pillar spot lift rv" style="--d:.08s;--accent:var(--copper);--soft:var(--copper-soft)">
+                <span class="no">ii</span>
+                <div class="ico"><i class="ri-heart-pulse-line"></i></div>
+                <h3>Affective Objective</h3>
+                <p>
                     Understand human, social, ethical, and environmental context of the IT profession to contribute positively to sustainable societal needs.
                 </p>
             </div>
-            <div class="p-6 rounded-2xl bg-eco-900/30 border border-eco-500/20">
-                <div class="w-10 h-10 rounded-xl bg-eco-500/10 text-eco-400 flex items-center justify-center text-xl mb-4">
-                    <i class="ri-tools-line"></i>
-                </div>
-                <h3 class="text-lg font-bold text-white">Behavioural Objective</h3>
-                <p class="text-gray-400 text-sm mt-2 leading-relaxed">
+            <div class="card pillar spot lift rv" style="--d:.16s;--accent:var(--teal);--soft:var(--teal-soft)">
+                <span class="no">iii</span>
+                <div class="ico"><i class="ri-tools-line"></i></div>
+                <h3>Behavioural Objective</h3>
+                <p>
                     Inculcate research and development abilities, enabling students to dissect real-world e-waste challenges through scientific methodologies.
                 </p>
             </div>
         </div>
 
         <!-- NBA Course Outcomes (CO1 - CO5) -->
-        <div class="p-8 rounded-3xl bg-eco-900/40 border border-white/10" data-aos="fade-up">
-            <div class="flex items-center justify-between flex-wrap gap-4 mb-6">
+        <div class="card co-board rv">
+            <div class="co-top">
                 <div>
-                    <h3 class="text-xl font-bold text-white">NBA Course Outcomes (COs)</h3>
-                    <p class="text-gray-400 text-xs mt-1">Direct module alignment with Bloom's Taxonomy and Program Outcomes (POs)</p>
+                    <h3>NBA Course Outcomes (COs)</h3>
+                    <p>Direct module alignment with Bloom's Taxonomy and Program Outcomes (POs)</p>
                 </div>
-                <span class="text-xs px-3 py-1 rounded-full bg-eco-500/20 text-eco-400 font-semibold">100% Attainment Target</span>
+                <span class="chip"><i class="ri-focus-3-line"></i> 100% Attainment Target</span>
             </div>
 
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm">
-                <div class="p-4 rounded-xl bg-eco-950/60 border border-white/5 flex gap-4">
-                    <span class="text-eco-400 font-bold text-base">CO1</span>
-                    <p class="text-gray-300"><strong class="text-white">Concept & Recycling:</strong> Understand the fundamental need and scientific principles of e-waste management and material recovery (Module 1).</p>
+            <div class="co-list">
+                <div class="co">
+                    <span class="co-no">CO<b>01</b></span>
+                    <p><strong>Concept & Recycling:</strong> Understand the fundamental need and scientific principles of e-waste management and material recovery (Module 1).</p>
                 </div>
-                <div class="p-4 rounded-xl bg-eco-950/60 border border-white/5 flex gap-4">
-                    <span class="text-eco-400 font-bold text-base">CO2</span>
-                    <p class="text-gray-300"><strong class="text-white">Legislative Policies:</strong> Master national and international regulatory frameworks: India E-Waste Rules 2016/2022, EPR, RoHS, WEEE, and Basel Convention (Module 4).</p>
+                <div class="co">
+                    <span class="co-no">CO<b>02</b></span>
+                    <p><strong>Legislative Policies:</strong> Master national and international regulatory frameworks: India E-Waste Rules 2016/2022, EPR, RoHS, WEEE, and Basel Convention (Module 4).</p>
                 </div>
-                <div class="p-4 rounded-xl bg-eco-950/60 border border-white/5 flex gap-4">
-                    <span class="text-eco-400 font-bold text-base">CO3</span>
-                    <p class="text-gray-300"><strong class="text-white">Tools & Assessment:</strong> Recognize tools and engineering technologies required for recycling assessment, monitoring, and Environmental Impact Assessment (EIA) (Module 2 & 6).</p>
+                <div class="co">
+                    <span class="co-no">CO<b>03</b></span>
+                    <p><strong>Tools & Assessment:</strong> Recognize tools and engineering technologies required for recycling assessment, monitoring, and Environmental Impact Assessment (EIA) (Module 2 & 6).</p>
                 </div>
-                <div class="p-4 rounded-xl bg-eco-950/60 border border-white/5 flex gap-4">
-                    <span class="text-eco-400 font-bold text-base">CO4</span>
-                    <p class="text-gray-300"><strong class="text-white">Global & Contemporary Impact:</strong> Address contemporary technological solutions including Green Buildings, GIS/Remote Sensing, and Carbon Credits (Module 5 & 6).</p>
+                <div class="co">
+                    <span class="co-no">CO<b>04</b></span>
+                    <p><strong>Global & Contemporary Impact:</strong> Address contemporary technological solutions including Green Buildings, GIS/Remote Sensing, and Carbon Credits (Module 5 & 6).</p>
                 </div>
-                <div class="p-4 rounded-xl bg-eco-950/60 border border-white/5 flex gap-4 md:col-span-2">
-                    <span class="text-eco-400 font-bold text-base">CO5</span>
-                    <p class="text-gray-300"><strong class="text-white">Daily Life Application:</strong> Evaluate pollutant exposure pathways (neurotoxins, heavy metals) and conduct health risk assessments to minimize environmental hazards in daily operations (Module 3).</p>
+                <div class="co wide">
+                    <span class="co-no">CO<b>05</b></span>
+                    <p><strong>Daily Life Application:</strong> Evaluate pollutant exposure pathways (neurotoxins, heavy metals) and conduct health risk assessments to minimize environmental hazards in daily operations (Module 3).</p>
                 </div>
             </div>
         </div>
@@ -286,136 +333,132 @@
 </section>
 
 <!-- ================= E-WASTE CORE INFORMATION SECTION ================= -->
-<section id="ewaste-info" class="py-20 relative border-t border-white/5 bg-eco-900/20">
-    <div class="max-w-7xl mx-auto px-6">
-        <div class="text-center max-w-3xl mx-auto mb-16" data-aos="fade-up">
-            <span class="px-4 py-1.5 rounded-full bg-eco-500/10 border border-eco-500/20 text-eco-400 text-xs font-semibold uppercase tracking-wider">
-                Environmental Intelligence
-            </span>
-            <h2 class="font-display text-3xl md:text-5xl font-bold text-white mt-4">
-                The Anatomy of E-Waste
-            </h2>
-            <p class="text-gray-400 text-sm md:text-base mt-3">
+<section id="ewaste-info" class="section">
+    <div class="wrap">
+        <div class="sec-head">
+            <div>
+                <span class="eyebrow rv"><span class="idx">04</span><span class="bar"></span>Environmental Intelligence</span>
+                <h2 class="rv" style="--d:.08s">The Anatomy of <em>E-Waste</em></h2>
+            </div>
+            <p class="rv" style="--d:.16s">
                 Electronic waste is not simply scrap—it is an intricate composite of scarce recoverable resources and persistent environmental hazards.
             </p>
         </div>
 
         <!-- 3 Highlight Infographics -->
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12" data-aos="fade-up">
-            <div class="p-6 rounded-2xl bg-eco-800/40 border border-white/10 hover:border-eco-400/40 transition-all">
-                <span class="text-4xl font-extrabold text-eco-400 font-display">62M t</span>
-                <h4 class="text-white font-bold text-lg mt-2">Global E-Waste Generated</h4>
-                <p class="text-gray-400 text-xs mt-2 leading-relaxed">
+        <div class="facts">
+            <div class="card fact spot glow rv" style="--accent:var(--leaf)">
+                <span class="big"><span data-count="62">62</span><small>M t</small></span>
+                <h4>Global E-Waste Generated</h4>
+                <p>
                     According to the Global E-Waste Monitor (UN), humanity generated 62 million tonnes of e-waste in 2022, on pace to hit 82M tonnes by 2030. Only 22.3% is formally documented as collected and recycled.
                 </p>
+                <div class="bar" style="--w:22.3%"><i></i></div>
+                <div class="bar-lbl"><span>Formally recycled</span><span>22.3%</span></div>
             </div>
-            <div class="p-6 rounded-2xl bg-eco-800/40 border border-white/10 hover:border-eco-400/40 transition-all">
-                <span class="text-4xl font-extrabold text-cyan-400 font-display">31B kg</span>
-                <h4 class="text-white font-bold text-lg mt-2">Recoverable Metals Trapped</h4>
-                <p class="text-gray-400 text-xs mt-2 leading-relaxed">
+            <div class="card fact spot glow rv" style="--d:.08s;--accent:var(--teal)">
+                <span class="big"><span data-count="31">31</span><small>B kg</small></span>
+                <h4>Recoverable Metals Trapped</h4>
+                <p>
                     Discarded electronics contain roughly 31 billion kg of high-value metals including copper, gold, aluminum, and critical rare-earth elements like neodymium and cobalt.
                 </p>
             </div>
-            <div class="p-6 rounded-2xl bg-eco-800/40 border border-white/10 hover:border-eco-400/40 transition-all">
-                <span class="text-4xl font-extrabold text-orange-400 font-display">11 tCO₂e</span>
-                <h4 class="text-white font-bold text-lg mt-2">Personal Digital Footprint</h4>
-                <p class="text-gray-400 text-xs mt-2 leading-relaxed">
+            <div class="card fact spot glow rv" style="--d:.16s;--accent:var(--copper)">
+                <span class="big"><span data-count="11">11</span><small>tCO₂e</small></span>
+                <h4>Personal Digital Footprint</h4>
+                <p>
                     Calculated during laboratory inventory assessments. Consumer electronics manufacturing accounts for up to 80% of a device's lifetime carbon footprint before it is even powered on.
                 </p>
+                <div class="bar" style="--w:80%"><i></i></div>
+                <div class="bar-lbl"><span>Manufacturing share</span><span>up to 80%</span></div>
             </div>
         </div>
 
         <!-- Detailed Breakdown: Hazards vs Urban Mining vs Waste Hierarchy -->
-        <div class="grid grid-cols-1 lg:grid-cols-3 gap-8" data-aos="fade-up">
+        <div class="deep">
             <!-- Hazardous Contaminants -->
-            <div class="p-6 rounded-3xl bg-eco-950/80 border border-red-500/20 flex flex-col justify-between">
-                <div>
-                    <div class="flex items-center gap-3 text-red-400 font-bold mb-4">
-                        <i class="ri-alert-fill text-xl"></i>
-                        <h4 class="text-white text-lg">Hazardous Contaminants</h4>
+            <div class="card glow rv" style="--accent:var(--danger);--soft:var(--danger-soft)">
+                <div class="deep-head">
+                    <span class="ico"><i class="ri-alert-fill"></i></span>
+                    <h4>Hazardous Contaminants</h4>
+                </div>
+                <p class="intro">
+                    Crude dismantling and acid leaching lead to severe bioaccumulation in soil and groundwater:
+                </p>
+                <div class="elements">
+                    <div class="el">
+                        <span class="el-tile"><small>82</small><b>Pb</b></span>
+                        <p><strong>Lead (Pb):</strong> Solder joints & CRT funnels; causes acute neurotoxicity and kidney dysfunction.</p>
                     </div>
-                    <p class="text-gray-400 text-xs leading-relaxed mb-4">
-                        Crude dismantling and acid leaching lead to severe bioaccumulation in soil and groundwater:
-                    </p>
-                    <ul class="space-y-3 text-xs text-gray-300">
-                        <li class="flex items-start gap-2">
-                            <span class="text-red-400 font-bold">•</span>
-                            <span><strong>Lead (Pb):</strong> Solder joints & CRT funnels; causes acute neurotoxicity and kidney dysfunction.</span>
-                        </li>
-                        <li class="flex items-start gap-2">
-                            <span class="text-red-400 font-bold">•</span>
-                            <span><strong>Mercury (Hg):</strong> Cold-cathode backlights & tilt sensors; bioaccumulates as methylmercury in aquatic food chains.</span>
-                        </li>
-                        <li class="flex items-start gap-2">
-                            <span class="text-red-400 font-bold">•</span>
-                            <span><strong>Cadmium (Cd):</strong> SMD chip resistors & older batteries; categorized as a Group 1 human carcinogen.</span>
-                        </li>
-                        <li class="flex items-start gap-2">
-                            <span class="text-red-400 font-bold">•</span>
-                            <span><strong>BFRs:</strong> Brominated flame retardants in PCBs; release toxic dioxins and furans when incinerated.</span>
-                        </li>
-                    </ul>
+                    <div class="el">
+                        <span class="el-tile"><small>80</small><b>Hg</b></span>
+                        <p><strong>Mercury (Hg):</strong> Cold-cathode backlights & tilt sensors; bioaccumulates as methylmercury in aquatic food chains.</p>
+                    </div>
+                    <div class="el">
+                        <span class="el-tile"><small>48</small><b>Cd</b></span>
+                        <p><strong>Cadmium (Cd):</strong> SMD chip resistors & older batteries; categorized as a Group 1 human carcinogen.</p>
+                    </div>
+                    <div class="el">
+                        <span class="el-tile"><small>35</small><b>Br</b></span>
+                        <p><strong>BFRs:</strong> Brominated flame retardants in PCBs; release toxic dioxins and furans when incinerated.</p>
+                    </div>
                 </div>
             </div>
 
             <!-- Metallurgical Recovery Routes -->
-            <div class="p-6 rounded-3xl bg-eco-950/80 border border-eco-500/20 flex flex-col justify-between">
-                <div>
-                    <div class="flex items-center gap-3 text-eco-400 font-bold mb-4">
-                        <i class="ri-recycle-line text-xl"></i>
-                        <h4 class="text-white text-lg">Metallurgical Recovery Routes</h4>
+            <div class="card glow rv" style="--d:.08s;--accent:var(--leaf);--soft:var(--leaf-soft)">
+                <div class="deep-head">
+                    <span class="ico"><i class="ri-recycle-line"></i></span>
+                    <h4>Metallurgical Recovery Routes</h4>
+                </div>
+                <p class="intro">
+                    Formal industrial-scale pipelines for closed-loop resource extraction:
+                </p>
+                <div class="steps">
+                    <div class="step">
+                        <span class="n">1</span>
+                        <p><strong>Mechanical Separation:</strong> Cross-flow shredders, magnetic overbands for ferrous metals, and Eddy Current separators for aluminum and copper.</p>
                     </div>
-                    <p class="text-gray-400 text-xs leading-relaxed mb-4">
-                        Formal industrial-scale pipelines for closed-loop resource extraction:
-                    </p>
-                    <ul class="space-y-3 text-xs text-gray-300">
-                        <li class="flex items-start gap-2">
-                            <span class="text-eco-400 font-bold">1.</span>
-                            <span><strong>Mechanical Separation:</strong> Cross-flow shredders, magnetic overbands for ferrous metals, and Eddy Current separators for aluminum and copper.</span>
-                        </li>
-                        <li class="flex items-start gap-2">
-                            <span class="text-eco-400 font-bold">2.</span>
-                            <span><strong>Pyrometallurgical Smelting:</strong> Thermal oxidation in top-submerged lance furnaces (e.g., IsaSmelt) separating base metals into silica-based slag.</span>
-                        </li>
-                        <li class="flex items-start gap-2">
-                            <span class="text-eco-400 font-bold">3.</span>
-                            <span><strong>Hydrometallurgy & Leaching:</strong> Acidic and thiourea leaches, solvent extraction, and electrowinning for high-purity gold and palladium refinement.</span>
-                        </li>
-                    </ul>
+                    <div class="step">
+                        <span class="n">2</span>
+                        <p><strong>Pyrometallurgical Smelting:</strong> Thermal oxidation in top-submerged lance furnaces (e.g., IsaSmelt) separating base metals into silica-based slag.</p>
+                    </div>
+                    <div class="step">
+                        <span class="n">3</span>
+                        <p><strong>Hydrometallurgy & Leaching:</strong> Acidic and thiourea leaches, solvent extraction, and electrowinning for high-purity gold and palladium refinement.</p>
+                    </div>
                 </div>
             </div>
 
             <!-- The Circular Hierarchy -->
-            <div class="p-6 rounded-3xl bg-eco-950/80 border border-cyan-500/20 flex flex-col justify-between">
-                <div>
-                    <div class="flex items-center gap-3 text-cyan-400 font-bold mb-4">
-                        <i class="ri-loop-right-line text-xl"></i>
-                        <h4 class="text-white text-lg">Circular Waste Hierarchy</h4>
+            <div class="card glow rv" style="--d:.16s;--accent:var(--teal);--soft:var(--teal-soft)">
+                <div class="deep-head">
+                    <span class="ico"><i class="ri-loop-right-line"></i></span>
+                    <h4>Circular Waste Hierarchy</h4>
+                </div>
+                <p class="intro">
+                    Prioritizing highest value retention from product lifecycle management:
+                </p>
+                <div class="pyramid">
+                    <div class="tier" style="--w:100%;--c:var(--leaf)">
+                        <span>1. Refuse & Prolong</span>
+                        <small>Keep using (5–6 yrs)</small>
                     </div>
-                    <p class="text-gray-400 text-xs leading-relaxed mb-4">
-                        Prioritizing highest value retention from product lifecycle management:
-                    </p>
-                    <div class="space-y-2 text-xs">
-                        <div class="p-2.5 rounded-lg bg-eco-900/60 border border-eco-500/30 flex justify-between items-center text-eco-300 font-semibold">
-                            <span>1. Refuse & Prolong</span>
-                            <span class="text-[10px] text-gray-400">Keep using (5–6 yrs)</span>
-                        </div>
-                        <div class="p-2.5 rounded-lg bg-eco-900/50 border border-eco-500/20 flex justify-between items-center text-eco-300 font-medium">
-                            <span>2. Repair & Modularize</span>
-                            <span class="text-[10px] text-gray-400">Design for Disassembly</span>
-                        </div>
-                        <div class="p-2.5 rounded-lg bg-eco-900/40 border border-cyan-500/20 flex justify-between items-center text-cyan-300 font-medium">
-                            <span>3. Refurbish & Trade-In</span>
-                            <span class="text-[10px] text-gray-400">Certified Re-Newed</span>
-                        </div>
-                        <div class="p-2.5 rounded-lg bg-eco-900/30 border border-white/5 flex justify-between items-center text-gray-300">
-                            <span>4. Material Recovery</span>
-                            <span class="text-[10px] text-gray-400">Urban Mining</span>
-                        </div>
-                        <div class="p-2.5 rounded-lg bg-red-950/30 border border-red-500/20 flex justify-between items-center text-red-300">
-                            <span>5. Controlled Landfill</span>
-                            <span class="text-[10px] text-red-400 font-bold">Absolute Last Resort</span>
-                        </div>
+                    <div class="tier" style="--w:92%;--c:var(--leaf)">
+                        <span>2. Repair & Modularize</span>
+                        <small>Design for Disassembly</small>
+                    </div>
+                    <div class="tier" style="--w:84%;--c:var(--teal)">
+                        <span>3. Refurbish & Trade-In</span>
+                        <small>Certified Re-Newed</small>
+                    </div>
+                    <div class="tier" style="--w:76%;--c:var(--copper)">
+                        <span>4. Material Recovery</span>
+                        <small>Urban Mining</small>
+                    </div>
+                    <div class="tier last" style="--w:68%;--c:var(--danger)">
+                        <span>5. Controlled Landfill</span>
+                        <small>Absolute Last Resort</small>
                     </div>
                 </div>
             </div>
@@ -424,194 +467,171 @@
 </section>
 
 <!-- ================= TECHNICAL & PERSONAL SKILLS SECTION ================= -->
-<section id="skills" class="py-20 relative border-t border-white/5 bg-eco-950/60">
-    <div class="max-w-7xl mx-auto px-6">
-        <div class="text-center max-w-3xl mx-auto mb-16" data-aos="fade-up">
-            <span class="px-4 py-1.5 rounded-full bg-eco-500/10 border border-eco-500/20 text-eco-400 text-xs font-semibold uppercase tracking-wider">
-                Capabilities Matrix
-            </span>
-            <h2 class="font-display text-3xl md:text-5xl font-bold text-white mt-4">
-                Technical & Personal Skills
-            </h2>
-            <p class="text-gray-400 text-sm md:text-base mt-3">
+<section id="skills" class="section alt">
+    <div class="wrap">
+        <div class="sec-head">
+            <div>
+                <span class="eyebrow rv"><span class="idx">05</span><span class="bar"></span>Capabilities Matrix</span>
+                <h2 class="rv" style="--d:.08s">Technical &amp; <em>Personal</em> Skills</h2>
+            </div>
+            <p class="rv" style="--d:.16s">
                 Bridging strong programming fundamentals, data science, and soft skills to build scalable solutions.
             </p>
         </div>
 
-        <!-- Adjusted to a perfectly balanced 3-column grid -->
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-8" data-aos="fade-up">
-            
+        <div class="skills">
             <!-- Skill Category 1: Programming & Web -->
-            <div class="p-8 rounded-2xl bg-eco-900/40 border border-white/10 hover:border-eco-400/40 transition-all flex flex-col justify-between">
-                <div>
-                    <div class="w-12 h-12 rounded-xl bg-eco-500/10 text-eco-400 flex items-center justify-center text-2xl mb-5">
-                        <i class="ri-code-s-slash-line"></i>
-                    </div>
-                    <h3 class="text-xl font-bold text-white mb-3">Software & Web</h3>
-                    <p class="text-gray-400 text-sm leading-relaxed mb-6">
-                        Skilled in building websites supported by strong programming fundamentals, enabling clean logic and structured development.
-                    </p>
-                </div>
-                <div class="flex flex-wrap gap-2">
-                    <span class="px-3 py-1.5 text-xs rounded-md bg-eco-950 border border-eco-500/30 text-eco-300">HTML</span>
-                    <span class="px-3 py-1.5 text-xs rounded-md bg-eco-950 border border-eco-500/30 text-eco-300">CSS</span>
-                    <span class="px-3 py-1.5 text-xs rounded-md bg-eco-950 border border-eco-500/30 text-eco-300">JavaScript</span>
-                    <span class="px-3 py-1.5 text-xs rounded-md bg-eco-950 border border-eco-500/30 text-eco-300">Node.js</span>
-                    <span class="px-3 py-1.5 text-xs rounded-md bg-eco-950 border border-eco-500/30 text-eco-300">C</span>
-                    <span class="px-3 py-1.5 text-xs rounded-md bg-eco-950 border border-eco-500/30 text-eco-300">Java</span>
+            <div class="card skill spot lift rv" style="--accent:var(--leaf);--soft:var(--leaf-soft)">
+                <div class="ico"><i class="ri-code-s-slash-line"></i></div>
+                <h3>Software & Web</h3>
+                <p>
+                    Skilled in building websites supported by strong programming fundamentals, enabling clean logic and structured development.
+                </p>
+                <div class="tags">
+                    <span class="tag">HTML</span>
+                    <span class="tag">CSS</span>
+                    <span class="tag">JavaScript</span>
+                    <span class="tag">Node.js</span>
+                    <span class="tag">C</span>
+                    <span class="tag">Java</span>
                 </div>
             </div>
 
             <!-- Skill Category 2: Data & ML -->
-            <div class="p-8 rounded-2xl bg-eco-900/40 border border-white/10 hover:border-cyan-400/40 transition-all flex flex-col justify-between">
-                <div>
-                    <div class="w-12 h-12 rounded-xl bg-cyan-500/10 text-cyan-400 flex items-center justify-center text-2xl mb-5">
-                        <i class="ri-line-chart-fill"></i>
-                    </div>
-                    <h3 class="text-xl font-bold text-white mb-3">Data Science & ML</h3>
-                    <p class="text-gray-400 text-sm leading-relaxed mb-6">
-                        Experienced in analyzing datasets, interactive visualization, and modeling trends using machine learning algorithms.
-                    </p>
-                </div>
-                <div class="flex flex-wrap gap-2">
-                    <span class="px-3 py-1.5 text-xs rounded-md bg-eco-950 border border-cyan-500/30 text-cyan-300">Python</span>
-                    <span class="px-3 py-1.5 text-xs rounded-md bg-eco-950 border border-cyan-500/30 text-cyan-300">Machine Learning</span>
-                    <span class="px-3 py-1.5 text-xs rounded-md bg-eco-950 border border-cyan-500/30 text-cyan-300">Data Analysis</span>
-                    <span class="px-3 py-1.5 text-xs rounded-md bg-eco-950 border border-cyan-500/30 text-cyan-300">Chart.js</span>
+            <div class="card skill spot lift rv" style="--d:.08s;--accent:var(--teal);--soft:var(--teal-soft)">
+                <div class="ico"><i class="ri-line-chart-fill"></i></div>
+                <h3>Data Science & ML</h3>
+                <p>
+                    Experienced in analyzing datasets, interactive visualization, and modeling trends using machine learning algorithms.
+                </p>
+                <div class="tags">
+                    <span class="tag">Python</span>
+                    <span class="tag">Machine Learning</span>
+                    <span class="tag">Data Analysis</span>
+                    <span class="tag">Chart.js</span>
                 </div>
             </div>
 
             <!-- Skill Category 3: Personal Skills & Languages -->
-            <div class="p-8 rounded-2xl bg-eco-900/40 border border-white/10 hover:border-indigo-400/40 transition-all flex flex-col justify-between">
-                <div>
-                    <div class="w-12 h-12 rounded-xl bg-indigo-500/10 text-indigo-400 flex items-center justify-center text-2xl mb-5">
-                        <i class="ri-team-line"></i>
-                    </div>
-                    <h3 class="text-xl font-bold text-white mb-3">Soft Skills & Languages</h3>
-                    <p class="text-gray-400 text-sm leading-relaxed mb-6">
-                        A collection of soft skills and linguistic abilities that support my teamwork, communication, and personal growth.
-                    </p>
-                </div>
-                <div class="flex flex-wrap gap-2">
-                    <span class="px-3 py-1.5 text-xs rounded-md bg-eco-950 border border-indigo-500/30 text-indigo-300">Leadership</span>
-                    <span class="px-3 py-1.5 text-xs rounded-md bg-eco-950 border border-indigo-500/30 text-indigo-300">Team Player</span>
-                    <span class="px-3 py-1.5 text-xs rounded-md bg-eco-950 border border-indigo-500/30 text-indigo-300">Time Management</span>
-                    <span class="px-3 py-1.5 text-xs rounded-md bg-eco-950 border border-indigo-500/30 text-indigo-300">Public Relations</span>
-                    <span class="px-3 py-1.5 text-xs rounded-md bg-eco-950 border border-indigo-500/30 text-indigo-300">English</span>
-                    <span class="px-3 py-1.5 text-xs rounded-md bg-eco-950 border border-indigo-500/30 text-indigo-300">Japanese</span>
-                    <span class="px-3 py-1.5 text-xs rounded-md bg-eco-950 border border-indigo-500/30 text-indigo-300">Marathi</span>
-                    <span class="px-3 py-1.5 text-xs rounded-md bg-eco-950 border border-indigo-500/30 text-indigo-300">Hindi</span>
+            <div class="card skill spot lift rv" style="--d:.16s;--accent:var(--violet);--soft:var(--violet-soft)">
+                <div class="ico"><i class="ri-team-line"></i></div>
+                <h3>Soft Skills & Languages</h3>
+                <p>
+                    A collection of soft skills and linguistic abilities that support my teamwork, communication, and personal growth.
+                </p>
+                <div class="tags">
+                    <span class="tag">Leadership</span>
+                    <span class="tag">Team Player</span>
+                    <span class="tag">Time Management</span>
+                    <span class="tag">Public Relations</span>
+                    <span class="tag">English</span>
+                    <span class="tag">Japanese</span>
+                    <span class="tag">Marathi</span>
+                    <span class="tag">Hindi</span>
                 </div>
             </div>
-
         </div>
     </div>
 </section>
+
         <!-- ================= ASSIGNMENTS SYSTEM ================= -->
-        <section id="assignments" class="py-24 relative bg-eco-800/10">
-            <div class="container mx-auto px-6">
-                <div class="text-center max-w-2xl mx-auto mb-16" data-aos="fade-up">
-                    <span class="text-eco-400 text-xs font-semibold uppercase tracking-widest">Central Repository</span>
-                    <h2 class="font-display text-3xl sm:text-4xl font-bold text-white mt-2">Coursework & <span class="text-eco-400">Assignments</span></h2>
-                    <p class="text-gray-400 mt-3 text-sm">Explore submitted lab reports, case studies, and environmental management research notes. Hover cards to preview.</p>
+        <section id="assignments" class="section">
+            <div class="wrap">
+                <div class="sec-head center">
+                    <span class="eyebrow rv"><span class="idx">06</span><span class="bar"></span>Central Repository</span>
+                    <h2 class="rv" style="--d:.08s">Coursework &amp; <em>Assignments</em></h2>
+                    <p class="rv" style="--d:.16s">Explore submitted lab reports, case studies, and environmental management research notes. Hover cards to preview.</p>
                 </div>
 
                 <!-- Assignment Grid generated dynamically from main.js -->
-                <div id="assignment-grid" class="grid md:grid-cols-2 lg:grid-cols-3 gap-8"></div>
+                <div id="assignment-grid" class="a-grid"></div>
             </div>
         </section>
 
         <!-- ================= CERTIFICATES (INFINITE SLIDING MARQUEE) ================= -->
-        <section id="certifications" class="py-24 overflow-hidden relative">
-            <div class="container mx-auto px-6 mb-12">
-                <div class="text-center max-w-2xl mx-auto" data-aos="fade-up">
-                    <span class="text-eco-400 text-xs font-semibold uppercase tracking-widest">Validated Learning</span>
-                    <h2 class="font-display text-3xl sm:text-4xl font-bold text-white mt-2">My <span class="text-eco-400">Certificates</span></h2>
+        <section id="certifications" class="section alt">
+            <div class="wrap">
+                <div class="sec-head center">
+                    <span class="eyebrow rv"><span class="idx">07</span><span class="bar"></span>Validated Learning</span>
+                    <h2 class="rv" style="--d:.08s">My <em>Certificates</em></h2>
                 </div>
             </div>
 
-            <div class="cert__container relative w-full overflow-hidden">
+            <div class="certs rv">
                 <!-- Row 1 -->
-                <div class="cert__content flex gap-6 w-max animate-scroll">
-                    <img src="Certificates/Gemini Student.png" class="cert__img w-72 h-44 rounded-2xl object-cover border border-eco-500/40 shadow-lg cursor-pointer hover:scale-105 transition-transform" alt="Certificate">
-                    <img src="Certificates/Google GDG.png" class="cert__img w-72 h-44 rounded-2xl object-cover border border-eco-500/40 shadow-lg cursor-pointer hover:scale-105 transition-transform" alt="Certificate">
-                    <img src="Certificates/JAVA SpringBoot.png" class="cert__img w-72 h-44 rounded-2xl object-cover border border-eco-500/40 shadow-lg cursor-pointer hover:scale-105 transition-transform" alt="Certificate">
-                    <img src="Certificates/Professional Skills.png" class="cert__img w-72 h-44 rounded-2xl object-cover border border-eco-500/40 shadow-lg cursor-pointer hover:scale-105 transition-transform" alt="Certificate">
-                    <img src="Certificates/Programming in JAVA.png" class="cert__img w-72 h-44 rounded-2xl object-cover border border-eco-500/40 shadow-lg cursor-pointer hover:scale-105 transition-transform" alt="Certificate">
-                    <img src="Certificates/GovAI.png" class="cert__img w-72 h-44 rounded-2xl object-cover border border-eco-500/40 shadow-lg cursor-pointer hover:scale-105 transition-transform" alt="Certificate">
-                    <img src="Certificates/Google StartUp.png" class="cert__img w-72 h-44 rounded-2xl object-cover border border-eco-500/40 shadow-lg cursor-pointer hover:scale-105 transition-transform" alt="Certificate">
-                    <img src="Certificates/Robotics Course.png" class="cert__img w-72 h-44 rounded-2xl object-cover border border-eco-500/40 shadow-lg cursor-pointer hover:scale-105 transition-transform" alt="Certificate">
+                <div class="cert__content">
+                    <img src="Certificates/Gemini Student.png" class="cert__img" alt="Certificate">
+                    <img src="Certificates/Google GDG.png" class="cert__img" alt="Certificate">
+                    <img src="Certificates/JAVA SpringBoot.png" class="cert__img" alt="Certificate">
+                    <img src="Certificates/Professional Skills.png" class="cert__img" alt="Certificate">
+                    <img src="Certificates/Programming in JAVA.png" class="cert__img" alt="Certificate">
+                    <img src="Certificates/GovAI.png" class="cert__img" alt="Certificate">
+                    <img src="Certificates/Google StartUp.png" class="cert__img" alt="Certificate">
+                    <img src="Certificates/Robotics Course.png" class="cert__img" alt="Certificate">
                 </div>
 
                 <!-- Row 2 (Reverse) -->
-                <div class="cert__content cert__reverse flex gap-6 w-max animate-scroll-reverse mt-6">
-                    <img src="Certificates/Hack2skill-Certificate.png" class="cert__img w-72 h-44 rounded-2xl object-cover border border-eco-500/40 shadow-lg cursor-pointer hover:scale-105 transition-transform" alt="Certificate">
-                    <img src="Certificates/Hack2skill-Certificate (1).png" class="cert__img w-72 h-44 rounded-2xl object-cover border border-eco-500/40 shadow-lg cursor-pointer hover:scale-105 transition-transform" alt="Certificate">
-                    <img src="Certificates/Hack2skill-Certificate (3).png" class="cert__img w-72 h-44 rounded-2xl object-cover border border-eco-500/40 shadow-lg cursor-pointer hover:scale-105 transition-transform" alt="Certificate">
-                    <img src="Certificates/Hack2skill-Certificate (4).png" class="cert__img w-72 h-44 rounded-2xl object-cover border border-eco-500/40 shadow-lg cursor-pointer hover:scale-105 transition-transform" alt="Certificate">
-                    <img src="Certificates/Hack2skill-Certificate (5).png" class="cert__img w-72 h-44 rounded-2xl object-cover border border-eco-500/40 shadow-lg cursor-pointer hover:scale-105 transition-transform" alt="Certificate">
-                    <img src="Certificates/Hack2skill-Certificate (6).png" class="cert__img w-72 h-44 rounded-2xl object-cover border border-eco-500/40 shadow-lg cursor-pointer hover:scale-105 transition-transform" alt="Certificate">
-                    <img src="Certificates/Hack2skill-Certificate (7).png" class="cert__img w-72 h-44 rounded-2xl object-cover border border-eco-500/40 shadow-lg cursor-pointer hover:scale-105 transition-transform" alt="Certificate">
+                <div class="cert__content cert__reverse">
+                    <img src="Certificates/Hack2skill-Certificate.png" class="cert__img" alt="Certificate">
+                    <img src="Certificates/Hack2skill-Certificate (1).png" class="cert__img" alt="Certificate">
+                    <img src="Certificates/Hack2skill-Certificate (3).png" class="cert__img" alt="Certificate">
+                    <img src="Certificates/Hack2skill-Certificate (4).png" class="cert__img" alt="Certificate">
+                    <img src="Certificates/Hack2skill-Certificate (5).png" class="cert__img" alt="Certificate">
+                    <img src="Certificates/Hack2skill-Certificate (6).png" class="cert__img" alt="Certificate">
+                    <img src="Certificates/Hack2skill-Certificate (7).png" class="cert__img" alt="Certificate">
                 </div>
             </div>
-
-            <!-- Certificate Lightbox Modal -->
-            <div id="certModal" class="fixed inset-0 bg-black/90 backdrop-blur-md z-50 hidden items-center justify-center p-4">
-                <span class="cert__close absolute top-6 right-8 text-white text-4xl cursor-pointer hover:text-eco-400">&times;</span>
-                <img id="certFullView" class="max-w-[90%] max-h-[90%] rounded-2xl border-2 border-eco-500 shadow-2xl object-contain">
-            </div>
+            <p class="certs-note">Hover to pause · Click any certificate to view it full size</p>
         </section>
 
         <!-- ================= CONTACT SECTION ================= -->
-        <section id="contact" class="py-24 bg-eco-800/30 border-t border-white/5 relative">
-            <div class="container mx-auto px-6 grid lg:grid-cols-2 gap-12">
-                <div class="space-y-6" data-aos="fade-right">
-                    <span class="text-eco-400 text-xs font-semibold uppercase tracking-widest">Get In Touch</span>
-                    <h2 class="font-display text-3xl sm:text-4xl font-bold text-white">Let's Discuss Green Technology</h2>
-                    <p class="text-gray-400 leading-relaxed">
+        <section id="contact" class="section">
+            <div class="wrap contact-grid">
+                <div class="contact-copy">
+                    <span class="eyebrow rv"><span class="idx">08</span><span class="bar"></span>Get In Touch</span>
+                    <h2 class="h2 rv" style="--d:.08s">Let's Discuss <em>Green Technology</em></h2>
+                    <p class="rv" style="--d:.16s">
                         Have questions regarding coursework, recycling drives, or technical collaborations? Feel free to reach out directly.
                     </p>
-                    
-                    <div class="space-y-4 pt-4">
-                        <div class="flex items-center gap-4">
-                            <div class="w-12 h-12 rounded-xl bg-eco-700/50 border border-eco-600/30 flex items-center justify-center text-eco-400 text-xl">
-                                <i class="ri-mail-line"></i>
-                            </div>
+
+                    <div class="c-items">
+                        <a class="c-item rv" style="--d:.2s" href="mailto:swapnil.bhabal@vit.edu.in">
+                            <div class="ico"><i class="ri-mail-line"></i></div>
                             <div>
-                                <span class="text-xs text-gray-400 uppercase">Email Address</span>
-                                <p class="font-medium text-white">swapnil.bhabal@vit.edu.in</p>
+                                <span>Email Address</span>
+                                <p>swapnil.bhabal@vit.edu.in</p>
                             </div>
-                        </div>
-                        <div class="flex items-center gap-4">
-                            <div class="w-12 h-12 rounded-xl bg-eco-700/50 border border-eco-600/30 flex items-center justify-center text-eco-400 text-xl">
-                                <i class="ri-map-pin-line"></i>
-                            </div>
+                            <i class="go ri-arrow-right-up-line"></i>
+                        </a>
+                        <div class="c-item rv" style="--d:.26s">
+                            <div class="ico"><i class="ri-map-pin-line"></i></div>
                             <div>
-                                <span class="text-xs text-gray-400 uppercase">Location</span>
-                                <p class="font-medium text-white">Mumbai, Maharashtra, India</p>
+                                <span>Location</span>
+                                <p>Mumbai, Maharashtra, India</p>
                             </div>
                         </div>
                     </div>
                 </div>
 
-                <div class="p-8 rounded-[2.5rem] bg-eco-800/60 border border-white/10 backdrop-blur-xl space-y-6" data-aos="fade-left">
-                    <h3 class="font-display text-xl font-bold text-white">Send a Quick Inquiry</h3>
-                    <form id="contact-form" class="space-y-4">
-                        <div>
-                            <label class="block text-xs uppercase tracking-wider text-gray-400 mb-2">Your Name</label>
-                            <input type="text" required class="w-full px-4 py-3 rounded-xl bg-eco-900 border border-white/10 text-white focus:border-eco-500 focus:outline-none transition-colors" placeholder="Professor / Colleague Name">
+                <div class="card form-card rv" style="--d:.12s">
+                    <h3>Send a Quick Inquiry</h3>
+                    <form id="contact-form" class="form">
+                        <div class="field">
+                            <label for="cf-name">Your Name</label>
+                            <input id="cf-name" type="text" required placeholder="Professor / Colleague Name">
                         </div>
-                        <div>
-                            <label class="block text-xs uppercase tracking-wider text-gray-400 mb-2">Email Address</label>
-                            <input type="email" required class="w-full px-4 py-3 rounded-xl bg-eco-900 border border-white/10 text-white focus:border-eco-500 focus:outline-none transition-colors" placeholder="name@vit.edu.in">
+                        <div class="field">
+                            <label for="cf-email">Email Address</label>
+                            <input id="cf-email" type="email" required placeholder="name@vit.edu.in">
                         </div>
-                        <div>
-                            <label class="block text-xs uppercase tracking-wider text-gray-400 mb-2">Message</label>
-                            <textarea rows="4" required class="w-full px-4 py-3 rounded-xl bg-eco-900 border border-white/10 text-white focus:border-eco-500 focus:outline-none transition-colors" placeholder="Write your feedback or query here..."></textarea>
+                        <div class="field">
+                            <label for="cf-msg">Message</label>
+                            <textarea id="cf-msg" rows="4" required placeholder="Write your feedback or query here..."></textarea>
                         </div>
-                        <button type="submit" class="w-full py-4 rounded-xl bg-eco-600 hover:bg-eco-500 text-eco-900 font-bold transition-all shadow-[0_0_20px_rgba(34,197,94,0.3)]">
-                            Submit Inquiry
+                        <button type="submit" class="btn primary magnetic">
+                            Submit Inquiry <i class="ri-send-plane-2-line"></i>
                         </button>
+                        <p class="form-note">Opens your email app with the message ready to send.</p>
                     </form>
                 </div>
             </div>
@@ -620,74 +640,74 @@
     </main>
 
     <!-- ================= FOOTER ================= -->
-    <footer class="py-8 bg-eco-900 border-t border-white/5 text-center text-sm text-gray-400">
-        <div class="container mx-auto px-6 flex flex-col sm:flex-row items-center justify-between gap-4">
-            <p>E-Waste & Environmental Management Portfolio © <span id="footer-year"></span> | <strong class="text-white">Swapnil Bhabal</strong></p>
-            <p class="text-eco-400">Vidyalankar Institute of Technology (VIT), Mumbai</p>
+    <footer class="footer">
+        <div class="wrap">
+            <div class="foot-word" aria-hidden="true">Swapnil.<span>Eco</span></div>
+            <div class="foot-row">
+                <p>E-Waste & Environmental Management Portfolio © <span id="footer-year"></span> | <strong>Swapnil Bhabal</strong></p>
+                <p class="vit">Vidyalankar Institute of Technology (VIT), Mumbai</p>
+                <button class="to-top" type="button" id="toTop">Back to top <i class="ri-arrow-up-line"></i></button>
+            </div>
         </div>
     </footer>
 
-    <!-- ================= ASSIGNMENT MODAL POPUP (ENLARGED SPLIT VIEW) ================= -->
-   <!-- ================= ASSIGNMENT MODAL POPUP (SIDE-BY-SIDE SPLIT VIEW) ================= -->
-<!-- ================= ASSIGNMENT MODAL POPUP (MULTI-PAGE SLIDER VIEW) ================= -->
-    <div id="assignment-modal" class="fixed inset-0 bg-black/85 backdrop-blur-md z-50 hidden items-center justify-center p-4 sm:p-6">
-        <div class="bg-eco-800 border border-eco-600/40 rounded-[2.5rem] p-6 sm:p-8 max-w-6xl w-full max-h-[92vh] relative flex flex-col shadow-2xl">
-            <!-- Close Button -->
-            <button id="close-modal" class="absolute top-6 right-6 text-gray-400 hover:text-white text-2xl z-30 cursor-pointer">
-                <i class="ri-close-line"></i>
-            </button>
+    <!-- ================= ASSIGNMENT MODAL (DETAIL VIEW) ================= -->
+    <div id="assignment-modal" class="modal" aria-hidden="true">
+        <div class="modal-bg" data-close-modal></div>
+        <div class="modal-sheet" role="dialog" aria-modal="true" aria-labelledby="modal-title">
+            <div class="modal-bar">
+                <div class="left">
+                    <span id="modal-tag" class="chip"></span>
+                    <span id="modal-pos" class="pos"></span>
+                </div>
+                <div class="right">
+                    <button id="prev-assign" class="round" type="button" aria-label="Previous assignment" title="Previous assignment"><i class="ri-arrow-left-line"></i></button>
+                    <button id="next-assign" class="round" type="button" aria-label="Next assignment" title="Next assignment"><i class="ri-arrow-right-line"></i></button>
+                    <button id="close-modal" class="round" type="button" aria-label="Close" title="Close (Esc)"><i class="ri-close-line"></i></button>
+                </div>
+            </div>
 
-            <!-- Modal Body Split Grid: Left Text (Scrollable), Right Multi-Page Image Carousel + Button -->
-            <div class="grid lg:grid-cols-12 gap-8 overflow-hidden h-full">
-                
-                <!-- Left Column: 7-Point Formatted Text (Scrollable) -->
-                <div class="lg:col-span-7 overflow-y-auto pr-4 space-y-6 text-gray-300 text-sm max-h-[78vh] custom-scrollbar">
-                    <div>
-                        <span id="modal-tag" class="px-3 py-1 rounded-full bg-eco-700 text-eco-400 text-xs font-semibold uppercase"></span>
-                        <h3 id="modal-title" class="font-display text-2xl font-bold text-white mt-2"></h3>
-                        <p id="modal-date" class="text-xs text-eco-400 mt-1"></p>
-                    </div>
-
-                    <div id="modal-full-content" class="space-y-4 leading-relaxed text-gray-300">
-                        <!-- Content injected via JS -->
-                    </div>
+            <div class="modal-body">
+                <!-- Left: 7-point formatted text -->
+                <div class="modal-content" id="modal-scroll">
+                    <h2 id="modal-title"></h2>
+                    <p id="modal-date" class="modal-date"></p>
+                    <div id="modal-full-content" class="chapters"></div>
                 </div>
 
-                <!-- Right Column: Multi-Page Image Preview Carousel & PDF Download Button -->
-                <div class="lg:col-span-5 flex flex-col justify-between space-y-4 bg-eco-900/60 p-5 rounded-3xl border border-white/5 max-h-[78vh] overflow-y-auto custom-scrollbar">
-                    <div class="space-y-3">
-                        <h4 class="font-display text-sm font-bold text-white flex items-center justify-between">
-                            <span class="flex items-center gap-2"><i class="ri-image-line text-eco-400"></i> Evidence Pages</span>
-                            <span id="img-counter" class="text-xs text-eco-400 px-2 py-0.5 rounded-md bg-eco-800 border border-eco-600/30">1 / 1</span>
-                        </h4>
-                        
-                        <!-- Image Container with Arrows -->
-                        <div class="rounded-2xl overflow-hidden border border-eco-600/30 bg-eco-900 flex items-center justify-center p-2 relative group">
-                            <img id="modal-image" src="" alt="Assignment Evidence Page" class="w-full h-auto max-h-[380px] rounded-xl object-contain transition-all duration-300">
-                            
-                            <!-- Previous Arrow -->
-                            <button id="prev-img" class="absolute left-2 top-1/2 -translate-y-1/2 w-9 h-9 rounded-full bg-eco-900/90 border border-eco-500/50 text-white flex items-center justify-center hover:bg-eco-600 hover:text-eco-900 transition-all shadow-lg cursor-pointer">
-                                <i class="ri-arrow-left-s-line text-xl"></i>
-                            </button>
-                            
-                            <!-- Next Arrow -->
-                            <button id="next-img" class="absolute right-2 top-1/2 -translate-y-1/2 w-9 h-9 rounded-full bg-eco-900/90 border border-eco-500/50 text-white flex items-center justify-center hover:bg-eco-600 hover:text-eco-900 transition-all shadow-lg cursor-pointer">
-                                <i class="ri-arrow-right-s-line text-xl"></i>
-                            </button>
-                        </div>
+                <!-- Right: evidence image carousel + action buttons -->
+                <aside class="modal-side">
+                    <div class="side-head">
+                        <h5><i class="ri-image-line"></i> Evidence Pages</h5>
+                        <span id="img-counter" class="counter">1 / 1</span>
                     </div>
+                    <div class="viewer" id="viewer" title="Click to enlarge">
+                        <img id="modal-image" src="" alt="Assignment Evidence Page">
+                        <button id="prev-img" class="nav-arrow prev" type="button" aria-label="Previous image"><i class="ri-arrow-left-s-line"></i></button>
+                        <button id="next-img" class="nav-arrow next" type="button" aria-label="Next image"><i class="ri-arrow-right-s-line"></i></button>
+                        <span class="zoom-hint"><i class="ri-zoom-in-line"></i> Enlarge</span>
+                    </div>
+                    <div class="thumbs" id="thumbs"></div>
 
-<!-- Dynamic Action Buttons (Populated by main.js) -->
-                    <div id="modal-actions" class="pt-2 flex flex-col gap-2.5"></div>
-                </div>
-
+                    <!-- Dynamic Action Buttons (Populated by main.js) -->
+                    <div id="modal-actions" class="actions"></div>
+                </aside>
             </div>
         </div>
     </div>
 
+    <!-- Full-size image viewer (certificates and evidence) -->
+    <div id="certModal" class="lightbox" aria-hidden="true" role="dialog" aria-label="Image viewer">
+        <button class="round lb-close cert__close" type="button" aria-label="Close"><i class="ri-close-line"></i></button>
+        <button class="round lb-prev" type="button" aria-label="Previous"><i class="ri-arrow-left-s-line"></i></button>
+        <img id="certFullView" alt="">
+        <button class="round lb-next" type="button" aria-label="Next"><i class="ri-arrow-right-s-line"></i></button>
+        <p class="lb-cap" id="lbCap"></p>
+    </div>
+
+    <div class="toast" id="toast" role="status"><i class="ri-checkbox-circle-fill"></i><span></span></div>
+
     <!-- Scripts -->
-    <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/typed.js@2.1.0/dist/typed.umd.js"></script>
     <script src="js/main.js"></script>
 </body>
 </html>
